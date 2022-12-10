@@ -5,19 +5,30 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
-import MenuIcon from "@mui/icons-material/Menu";
+import { styled } from "@mui/material/styles";
+
 // import { createTheme } from "@mui/material/styles";
-import { useTheme } from "@mui/material";
+import { useMediaQuery, useTheme } from "@mui/material";
 
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 
 function Header() {
-  const theme = useTheme();
-  console.log(theme);
+  // const theme = useTheme();
+
+  // console.log(theme);
+
+  //✅poistion; sticky, top:0, z-indexを指定して固定させるようにしておく
+
+  const CustomNav = styled(AppBar)({
+    // backgroundColor: 'transparent',
+    boxShadow: "none",
+    // textAlign:'center',
+  });
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
+      {/* <AppBar position="static"> */}
+      <CustomNav position="static">
         {/* <AppBar position="static" color={theme.palette.primary.light}> */}
         <Toolbar>
           <FitnessCenterIcon
@@ -26,15 +37,25 @@ function Header() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </FitnessCenterIcon>
+          />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Fitness log
           </Typography>
-          <Button color="inherit">Logout</Button>
+          <Button
+            color="secondary"
+            variant="outlined"
+            sx={{
+              color: "inherit",
+              marginLeft: "auto",
+              "&:hover": {
+                backgroundColor: "#888",
+              },
+            }}
+          >
+            Logout
+          </Button>
         </Toolbar>
-      </AppBar>
+      </CustomNav>
     </Box>
   );
 }
