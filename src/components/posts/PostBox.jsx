@@ -6,11 +6,9 @@ import {
   Button,
   Container,
   TextField,
-  Typography,
   useTheme,
   styled,
 } from "@mui/material";
-import themes from "../../Theme";
 
 function PostBox() {
   const theme = useTheme();
@@ -65,7 +63,7 @@ function PostBox() {
             }}
           ></TextField> */}
           <CssTextField
-            contrastText
+            // contrasttext
             id="Multiline Placeholder"
             label="Record your progress"
             multiline
