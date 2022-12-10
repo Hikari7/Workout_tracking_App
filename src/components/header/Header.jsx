@@ -1,4 +1,3 @@
-// import React from "react";
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -6,30 +5,36 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { styled } from "@mui/material/styles";
-
-// import { createTheme } from "@mui/material/styles";
 import { useMediaQuery, useTheme } from "@mui/material";
 
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 
 function Header() {
-  // const theme = useTheme();
+  const theme = useTheme();
 
   // console.log(theme);
 
   //✅poistion; sticky, top:0, z-indexを指定して固定させるようにしておく
 
-  const CustomNav = styled(AppBar)({
-    // backgroundColor: 'transparent',
-    boxShadow: "none",
-    // textAlign:'center',
-  });
+  // const CustomNav = styled(AppBar)({
+  //   // backgroundColor={theme.palette.primary.light},
+  //   boxShadow: "none",
+  //   // position: "sticky",
+  // });
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      {/* <AppBar position="static"> */}
-      <CustomNav position="static">
-        {/* <AppBar position="static" color={theme.palette.primary.light}> */}
+    <>
+      {/* <Box > */}
+      {/* <AppBar position="static" backgroundColor={theme.palette.primary.dark}> */}
+      <AppBar
+        position="sticky"
+        sx={{
+          backgroundColor: "#B586D8",
+          boxShadow: "none",
+        }}
+      >
+        {/* <CustomNav position="sticky"> */}
+
         <Toolbar>
           <FitnessCenterIcon
             size="large"
@@ -55,8 +60,10 @@ function Header() {
             Logout
           </Button>
         </Toolbar>
-      </CustomNav>
-    </Box>
+        {/* </CustomNav> */}
+      </AppBar>
+      {/* </Box> */}
+    </>
   );
 }
 

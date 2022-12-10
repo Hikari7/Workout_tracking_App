@@ -4,28 +4,21 @@ import { Box, Container, TextField, Typography } from "@mui/material";
 import React from "react";
 
 function Posts() {
-  console.log("sss");
   return (
     <>
       {/* PostHeader */}
       <Container>
+        <Typography component="h3" sx={{ textAlign: "center", margin: 3 }}>
+          Record your progress
+        </Typography>
         <Box
           sx={{
-            width: "60%",
+            width: "80%",
             height: "auto",
-            justifyContent: "spaceBetween",
             mx: "auto",
             mt: 4,
-            //   backgroundColor: "primary.dark",
-            //   "&:hover": {
-            //     backgroundColor: "primary.main",
-            //     opacity: [0.9, 0.8, 0.7],
-            //   },
           }}
         >
-          <Typography component="h3" sx={{ textAlign: "center" }}>
-            Record your progress
-          </Typography>
           <TextField
             variant="outlined"
             placeholder="Record your progress"
@@ -33,9 +26,10 @@ function Posts() {
             rows={5}
             rowsmax={10}
             sx={{
-              justifyContent: "center",
+              justifyContent: "spaceBetween",
+              width: "100%",
               mx: "auto",
-              mt: 2,
+              backgroundColor: "#fff",
             }}
           />
         </Box>
