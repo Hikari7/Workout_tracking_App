@@ -44,7 +44,7 @@ function Header() {
             sx={{ mr: 2 }}
           />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Fitness log
+            Workout Tracker
           </Typography>
           <Button
             color="secondary"
@@ -55,6 +55,7 @@ function Header() {
               "&:hover": {
                 backgroundColor: "#888",
               },
+              textTransform: "none",
             }}
           >
             Logout

@@ -3,8 +3,7 @@ import Header from "./components/header/Header";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./Theme";
-import Posts from "./components/posts/Posts";
-
+import TimeLine from "./components/posts/Timeline";
 
 function App() {
   // console.log(theme);
@@ -14,7 +13,7 @@ function App() {
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header />
-        <Posts />
+        <TimeLine />
       </ThemeProvider>
     </div>
   );

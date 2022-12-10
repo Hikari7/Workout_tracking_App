@@ -10,16 +10,15 @@ const theme = createTheme({
     },
     secondary: {
       light: "#ff7961",
-      main: "#fff",
+      main: "#1B225A",
       dark: "#ba000d",
       contrastText: "#000",
     },
     background: {
-      default: "#ECDEF6",
+      default: "#fff",
     },
   },
   typography: {
-    // fontFamily: ["Varela", "Round"].join(","),
     fontFamily: ["Varela Round"].join(","),
   },
 });
