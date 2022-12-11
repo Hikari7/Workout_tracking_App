@@ -44,7 +44,7 @@ function PostBox() {
       <Container>
         <Box
           sx={{
-            width: "80%",
+            minWidth: "80%",
             height: "auto",
             mx: "auto",
             mt: 4,
@@ -65,7 +65,7 @@ function PostBox() {
             variant="standard"
             sx={{
               mt: 4,
-              ml: { md: 2 },
+              ml: { xs: 2 },
             }}
           />
           <CssTextField
@@ -107,7 +107,7 @@ function PostBox() {
             variant="contained"
             sx={{
               display: "block",
-              my: 2,
+              my: 4,
               ml: "auto",
               textTransform: "none",
             }}

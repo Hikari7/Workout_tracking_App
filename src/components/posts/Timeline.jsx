@@ -13,8 +13,8 @@ function TimeLine() {
     <>
       {/* PostHeader */}
       <Container maxWidth="90%">
-        {/* mdのサイズになったらdisplay:flexになる */}
-        <Box sx={{ display: { md: "flex" } }}>
+        {/* lgのサイズになったらdisplay:flexになる */}
+        <Box sx={{ display: { lg: "flex" } }}>
           <Box
             sx={{
               background: "#fff",
@@ -23,7 +23,6 @@ function TimeLine() {
               borderRadius: 3,
               py: 3,
               maxHeight: 700,
-              maxWidth: { md: 600 },
             }}
           >
             <Typography
@@ -33,6 +32,7 @@ function TimeLine() {
                 mt: 8,
                 letterSpacing: 2,
                 fontSize: 18,
+                fontWeight: "bold",
                 color: "#1B225A",
               }}
             >
@@ -58,10 +58,11 @@ function TimeLine() {
                 mt: 8,
                 letterSpacing: 2,
                 fontSize: 18,
+                fontWeight: "bold",
                 color: "#1B225A",
               }}
             >
-              Tracking History
+              Activity Histories
             </Typography>
             <Post />
           </Box>

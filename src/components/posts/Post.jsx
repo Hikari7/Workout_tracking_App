@@ -11,7 +11,7 @@ function Post() {
       <Container>
         <Box
           sx={{
-            width: "80%",
+            width: "100%",
             maxHeight: 800,
             mx: "auto",
             mt: 4,
