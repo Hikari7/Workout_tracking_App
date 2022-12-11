@@ -9,8 +9,14 @@ import {
   useTheme,
   styled,
 } from "@mui/material";
+// import { TimePicker } from "@mui/x-date-pickers/TimePicker";
+// import dayjs from "dayjs";
 
 function PostBox() {
+  //   const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
+  //   const handleChange = (newValue) => {
+  //     setValue(newValue);
+  //   };
   const theme = useTheme();
 
   const CssTextField = styled(TextField)({
@@ -18,7 +24,7 @@ function PostBox() {
       color: "#1B225A",
     },
     "& .MuiInput-underline:after": {
-      borderBottomColor: "gr#1B225A",
+      borderBottomColor: "#1B225A",
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
@@ -50,18 +56,29 @@ function PostBox() {
               mx: "auto",
             }}
           />
-          {/* <TextField
-            variant="outlined"
-            placeholder="Record your progress"
-            multiline
-            rows={5}
-            rowsmax={10}
+
+          <CssTextField
+            required
+            id="outlined-required"
+            label="Hours"
+            defaultValue="1"
+            variant="standard"
             sx={{
-              justifyContent: "spaceBetween",
-              width: "100%",
-              mx: "auto",
+              mt: 4,
+              ml: { md: 2 },
             }}
-          ></TextField> */}
+          />
+          <CssTextField
+            required
+            id="outlined-required"
+            label="Minuets"
+            defaultValue="30"
+            variant="standard"
+            sx={{
+              mt: 4,
+              ml: 2,
+            }}
+          />
           <CssTextField
             // contrasttext
             id="Multiline Placeholder"
@@ -69,7 +86,7 @@ function PostBox() {
             multiline
             rows={4}
             sx={{
-              mt: 4,
+              mt: 2,
               justifyContent: "spaceBetween",
               width: "100%",
               mx: "auto",
@@ -90,7 +107,7 @@ function PostBox() {
             variant="contained"
             sx={{
               display: "block",
-              mt: 2,
+              my: 2,
               ml: "auto",
               textTransform: "none",
             }}
@@ -104,3 +121,26 @@ function PostBox() {
 }
 
 export default PostBox;
+
+{
+  /* <TextField
+            variant="outlined"
+            placeholder="Record your progress"
+            multiline
+            rows={5}
+            rowsmax={10}
+            sx={{
+              justifyContent: "spaceBetween",
+              width: "100%",
+              mx: "auto",
+            }}
+          ></TextField> */
+}
+{
+  /* <TimePicker
+            label="Time"
+            value={value}
+            onChange={handleChange}
+            renderInput={(params) => <TextField {...params} />}
+          /> */
+}

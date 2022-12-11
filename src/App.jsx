@@ -9,7 +9,8 @@ function App() {
   // console.log(theme);
 
   return (
-    <div className="App">
+    // <div className="App">
+    <div className="App bgColor">
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Header />

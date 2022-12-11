@@ -12,12 +12,71 @@ function Post() {
         <Box
           sx={{
             width: "80%",
-            height: "auto",
+            maxHeight: 800,
             mx: "auto",
             mt: 4,
+            overflowY: "scroll",
+            scrollbarBaseColor: "#B586D8",
+            scrollbarColor: "#B586D8",
+            display: { md: "flex" },
+            flexWrap: { md: "wrap" },
           }}
         >
-          <Card sx={{ width: "80%", mx: "auto", my: 4 }}>
+          <Card sx={{ maxWidth: { sm: "80%", md: "40%" }, mx: "auto", my: 4 }}>
+            <CardMedia
+              component="img"
+              height="300"
+              //   img
+              src="https://images.unsplash.com/photo-1608330270368-0ae06ae8e4eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+              alt="history img"
+            />
+            <CardContent sx={{ py: 4, px: 4 }}>
+              <Typography variant="body2" color="text.secondary">
+                Lizards are a widespread group of squamate reptiles, with over
+                6,000 species, ranging across all continents except Antarctica
+                Lizards are a widespread group of squamate reptiles, with over
+                6,000 species, ranging across all continents except Antarctica
+              </Typography>
+            </CardContent>
+            <div className="shareBtn">
+              <TwitterShareButton
+                url={"https://twitter.com/hk_Vancouver"}
+                options={{
+                  text: "#WorkoutTracker",
+                  via: "hk_Vancouver",
+                  size: "large",
+                }}
+              />
+            </div>
+          </Card>
+          <Card sx={{ maxWidth: { sm: "80%", md: "40%" }, mx: "auto", my: 4 }}>
+            <CardMedia
+              component="img"
+              height="300"
+              //   img
+              src="https://images.unsplash.com/photo-1608330270368-0ae06ae8e4eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+              alt="history img"
+            />
+            <CardContent sx={{ py: 4, px: 4 }}>
+              <Typography variant="body2" color="text.secondary">
+                Lizards are a widespread group of squamate reptiles, with over
+                6,000 species, ranging across all continents except Antarctica
+                Lizards are a widespread group of squamate reptiles, with over
+                6,000 species, ranging across all continents except Antarctica
+              </Typography>
+            </CardContent>
+            <div className="shareBtn">
+              <TwitterShareButton
+                url={"https://twitter.com/hk_Vancouver"}
+                options={{
+                  text: "#WorkoutTracker",
+                  via: "hk_Vancouver",
+                  size: "large",
+                }}
+              />
+            </div>
+          </Card>
+          <Card sx={{ maxWidth: { sm: "80%", md: "40%" }, mx: "auto", my: 4 }}>
             <CardMedia
               component="img"
               height="300"
