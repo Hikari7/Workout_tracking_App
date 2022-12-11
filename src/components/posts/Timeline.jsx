@@ -18,9 +18,11 @@ function TimeLine() {
               background: "#fff",
               mt: 8,
               m: { sm: 4, md: 8 },
+              mr: { lg: 2 },
               borderRadius: 3,
               py: 3,
               maxHeight: 700,
+              minWidth: { lg: "25%" },
             }}
           >
             <Typography
@@ -49,9 +51,11 @@ function TimeLine() {
               background: "#fff",
               mt: 8,
               m: { sm: 4, md: 8 },
+              ml: { lg: 2 },
               py: 3,
               borderRadius: 3,
               maxHeight: "auto",
+              minWidth: { lg: "60%" },
             }}
           >
             <Typography

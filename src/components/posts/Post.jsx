@@ -11,7 +11,7 @@ function Post({ verified, text, hours, minuets, image }) {
       <Container>
         <Box
           sx={{
-            width: "%",
+            width: "100%",
             maxHeight: 800,
             mx: "auto",
             mt: 4,
@@ -22,6 +22,62 @@ function Post({ verified, text, hours, minuets, image }) {
             flexWrap: { md: "wrap" },
           }}
         >
+          <Card sx={{ maxWidth: { sm: "80%", md: "40%" }, mx: "auto", my: 4 }}>
+            <CardMedia
+              component="img"
+              height="300"
+              src={image}
+              alt="history img"
+            />
+            <CardContent sx={{ py: 4, px: 4 }}>
+              <Typography variant="body1" color="text.secondary">
+                {hours} hours
+                <br></br>
+                {minuets} minuets
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+                {text}
+              </Typography>
+            </CardContent>
+            <div className="shareBtn">
+              <TwitterShareButton
+                url={"https://twitter.com/hk_Vancouver"}
+                options={{
+                  text: "#WorkoutTracker",
+                  via: "hk_Vancouver",
+                  size: "large",
+                }}
+              />
+            </div>
+          </Card>
+          <Card sx={{ maxWidth: { sm: "80%", md: "40%" }, mx: "auto", my: 4 }}>
+            <CardMedia
+              component="img"
+              height="300"
+              src={image}
+              alt="history img"
+            />
+            <CardContent sx={{ py: 4, px: 4 }}>
+              <Typography variant="body1" color="text.secondary">
+                {hours} hours
+                <br></br>
+                {minuets} minuets
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+                {text}
+              </Typography>
+            </CardContent>
+            <div className="shareBtn">
+              <TwitterShareButton
+                url={"https://twitter.com/hk_Vancouver"}
+                options={{
+                  text: "#WorkoutTracker",
+                  via: "hk_Vancouver",
+                  size: "large",
+                }}
+              />
+            </div>
+          </Card>
           <Card sx={{ maxWidth: { sm: "80%", md: "40%" }, mx: "auto", my: 4 }}>
             <CardMedia
               component="img"
