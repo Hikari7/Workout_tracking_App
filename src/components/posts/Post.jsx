@@ -5,13 +5,13 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { TwitterShareButton } from "react-twitter-embed";
 
-function Post() {
+function Post({ verified, text, hours, minuets, image }) {
   return (
     <>
       <Container>
         <Box
           sx={{
-            width: "100%",
+            width: "%",
             maxHeight: 800,
             mx: "auto",
             mt: 4,
@@ -26,70 +26,17 @@ function Post() {
             <CardMedia
               component="img"
               height="300"
-              //   img
-              src="https://images.unsplash.com/photo-1608330270368-0ae06ae8e4eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+              src={image}
               alt="history img"
             />
             <CardContent sx={{ py: 4, px: 4 }}>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
+              <Typography variant="body1" color="text.secondary">
+                {hours} hours
+                <br></br>
+                {minuets} minuets
               </Typography>
-            </CardContent>
-            <div className="shareBtn">
-              <TwitterShareButton
-                url={"https://twitter.com/hk_Vancouver"}
-                options={{
-                  text: "#WorkoutTracker",
-                  via: "hk_Vancouver",
-                  size: "large",
-                }}
-              />
-            </div>
-          </Card>
-          <Card sx={{ maxWidth: { sm: "80%", md: "40%" }, mx: "auto", my: 4 }}>
-            <CardMedia
-              component="img"
-              height="300"
-              //   img
-              src="https://images.unsplash.com/photo-1608330270368-0ae06ae8e4eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-              alt="history img"
-            />
-            <CardContent sx={{ py: 4, px: 4 }}>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-              </Typography>
-            </CardContent>
-            <div className="shareBtn">
-              <TwitterShareButton
-                url={"https://twitter.com/hk_Vancouver"}
-                options={{
-                  text: "#WorkoutTracker",
-                  via: "hk_Vancouver",
-                  size: "large",
-                }}
-              />
-            </div>
-          </Card>
-          <Card sx={{ maxWidth: { sm: "80%", md: "40%" }, mx: "auto", my: 4 }}>
-            <CardMedia
-              component="img"
-              height="300"
-              //   img
-              src="https://images.unsplash.com/photo-1608330270368-0ae06ae8e4eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-              alt="history img"
-            />
-            <CardContent sx={{ py: 4, px: 4 }}>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+                {text}
               </Typography>
             </CardContent>
             <div className="shareBtn">

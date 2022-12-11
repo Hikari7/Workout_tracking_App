@@ -14,3 +14,14 @@
     rgba(148, 187, 233, 1) 100%
   );
 }
+
+.displayName {
+  text-align: center;
+  color: #1b225a;
+}
+
+/* .userName {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #1b225a;
+} */

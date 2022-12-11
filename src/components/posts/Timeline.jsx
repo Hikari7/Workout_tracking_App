@@ -1,7 +1,7 @@
 //ShincodeのTimeLineにあたります
 
 import { useTheme } from "@emotion/react";
-import { Box, Container, TextField, Typography } from "@mui/material";
+import { Box, Container, Typography } from "@mui/material";
 import React from "react";
 import Post from "./Post";
 import PostBox from "./PostBox";
@@ -11,9 +11,7 @@ function TimeLine() {
 
   return (
     <>
-      {/* PostHeader */}
       <Container maxWidth="90%">
-        {/* lgのサイズになったらdisplay:flexになる */}
         <Box sx={{ display: { lg: "flex" } }}>
           <Box
             sx={{
@@ -39,7 +37,12 @@ function TimeLine() {
               Today's activity
             </Typography>
 
-            <PostBox />
+            <PostBox
+              displayName="Hikari Kobe"
+              username="hk_Vancouver"
+              avatar="http://shincode.info/wp-content/uploads/2021/12/icon.png"
+              verified={true}
+            />
           </Box>
           <Box
             sx={{
@@ -64,7 +67,12 @@ function TimeLine() {
             >
               Activity Histories
             </Typography>
-            <Post />
+            <Post
+              image="https://images.unsplash.com/photo-1608330270368-0ae06ae8e4eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+              hours="1"
+              minuets="30"
+              text="I trained my hip today!🍑"
+            />
           </Box>
         </Box>
       </Container>

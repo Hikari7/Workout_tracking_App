@@ -12,11 +12,7 @@ import {
 // import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 // import dayjs from "dayjs";
 
-function PostBox() {
-  //   const [value, setValue] = React.useState(dayjs("2014-08-18T21:11:54"));
-  //   const handleChange = (newValue) => {
-  //     setValue(newValue);
-  //   };
+function PostBox({ displayName, username, avatar, verified }) {
   const theme = useTheme();
 
   const CssTextField = styled(TextField)({
@@ -51,12 +47,15 @@ function PostBox() {
           }}
         >
           <Avatar
+            src={avatar}
             sx={{
               justifyContent: "spaceBetween",
               mx: "auto",
             }}
           />
-
+          <p className="displayName">{displayName}</p>
+          {/* <p className="userName">{username}</p> */}
+          {/* ✅日付も入れられたらボーナスポイントだよね、、 */}
           <CssTextField
             required
             id="outlined-required"
@@ -121,26 +120,3 @@ function PostBox() {
 }
 
 export default PostBox;
-
-{
-  /* <TextField
-            variant="outlined"
-            placeholder="Record your progress"
-            multiline
-            rows={5}
-            rowsmax={10}
-            sx={{
-              justifyContent: "spaceBetween",
-              width: "100%",
-              mx: "auto",
-            }}
-          ></TextField> */
-}
-{
-  /* <TimePicker
-            label="Time"
-            value={value}
-            onChange={handleChange}
-            renderInput={(params) => <TextField {...params} />}
-          /> */
-}

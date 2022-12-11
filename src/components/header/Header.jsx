@@ -33,8 +33,6 @@ function Header() {
           boxShadow: "none",
         }}
       >
-        {/* <CustomNav position="sticky"> */}
-
         <Toolbar>
           <FitnessCenterIcon
             size="large"
@@ -43,7 +41,11 @@ function Header() {
             aria-label="menu"
             sx={{ mr: 2 }}
           />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, fontWeight: "bold" }}
+          >
             Workout Tracker
           </Typography>
           <Button
