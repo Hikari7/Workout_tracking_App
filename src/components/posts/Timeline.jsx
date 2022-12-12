@@ -33,7 +33,7 @@ function TimeLine() {
                 letterSpacing: 2,
                 fontSize: 18,
                 fontWeight: "bold",
-                color: "#1B225A",
+                color: "primary.contrastText",
               }}
             >
               Today's activity
@@ -66,7 +66,7 @@ function TimeLine() {
                 letterSpacing: 2,
                 fontSize: 18,
                 fontWeight: "bold",
-                color: "#1B225A",
+                color: "primary.contrastText",
               }}
             >
               Activity Histories

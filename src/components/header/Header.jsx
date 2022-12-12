@@ -1,35 +1,18 @@
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { styled } from "@mui/material/styles";
-import { useMediaQuery, useTheme } from "@mui/material";
 
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 
 function Header() {
-  const theme = useTheme();
-
-  // console.log(theme);
-
-  //✅poistion; sticky, top:0, z-indexを指定して固定させるようにしておく
-
-  // const CustomNav = styled(AppBar)({
-  //   // backgroundColor={theme.palette.primary.light},
-  //   boxShadow: "none",
-  //   // position: "sticky",
-  // });
-
   return (
     <>
-      {/* <Box > */}
-      {/* <AppBar position="static" backgroundColor={theme.palette.primary.dark}> */}
       <AppBar
         position="sticky"
         sx={{
-          backgroundColor: "#B586D8",
+          backgroundColor: "primary.main",
           boxShadow: "none",
         }}
       >
@@ -49,13 +32,12 @@ function Header() {
             Workout Tracker
           </Typography>
           <Button
-            color="secondary"
+            color="button"
             variant="outlined"
             sx={{
-              color: "inherit",
               marginLeft: "auto",
               "&:hover": {
-                backgroundColor: "#888",
+                backgroundColor: "primary.light",
               },
               textTransform: "none",
             }}
@@ -63,9 +45,7 @@ function Header() {
             Logout
           </Button>
         </Toolbar>
-        {/* </CustomNav> */}
       </AppBar>
-      {/* </Box> */}
     </>
   );
 }

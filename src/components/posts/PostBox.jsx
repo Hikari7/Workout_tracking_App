@@ -17,20 +17,29 @@ function PostBox({ displayName, username, avatar, verified }) {
 
   const CssTextField = styled(TextField)({
     "& label.Mui-focused": {
-      color: "#1B225A",
+      //   color: "primary.contrastText",
+      color: "#e1bee7",
     },
+    
     "& .MuiInput-underline:after": {
-      borderBottomColor: "#1B225A",
+      borderBottomColor: "#B586D8",
+      //   borderBottomColor: "primary.contrastText",
+      //   borderBottomColor: "#bada55",
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
-        borderColor: "#EBDEF3",
+        // borderColor: "#EBDEF3",
+        borderColor: "#B586D8",
       },
       "&:hover fieldset": {
+        // borderColor: "#B586D8",
+        // borderColor: "promary.dark",
         borderColor: "#B586D8",
       },
       "&.Mui-focused fieldset": {
-        borderColor: "#1B225A",
+        // borderColor: "#1B225A",
+        // borderColor: "primary.conrtrastText",
+        borderColor: "#B586D8",
       },
     },
   });
