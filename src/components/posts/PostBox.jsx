@@ -8,6 +8,8 @@ import {
   TextField,
   styled,
 } from "@mui/material";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import db from "../../config/configs";
 // import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 // import dayjs from "dayjs";
 
@@ -15,7 +17,7 @@ function PostBox({ displayName, username, avatar, verified }) {
   const [record, setRecord] = useState("");
   const [hours, setHours] = useState(1);
   const [minuets, setMinuets] = useState(30);
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState("https://source.unsplash.com/random");
 
   // const onChangeRecord = (e) => {
   //   setRecord(e.target.value);
@@ -23,6 +25,21 @@ function PostBox({ displayName, username, avatar, verified }) {
 
   const sendPost = (e) => {
     //add datas to the firebase data
+    e.preventDefault();
+
+    addDoc(collection(db, "posts"), {
+      // displayName: "Hikari Kobe",
+      // username: "hk_Vancouver",
+      // // veritied: true,
+      image: image,
+      hours: 1,
+      minuets: 30,
+      text: record,
+      timestanp: serverTimestamp(),
+    });
+
+    setRecord("");
+    setImage("");
   };
 
   const CssTextField = styled(TextField)({

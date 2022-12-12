@@ -1,12 +1,17 @@
-//ShincodeのTimeLineにあたります
-
-import { useTheme } from "@emotion/react";
 import { Box, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
 import PostBox from "./PostBox";
 import db from "../../config/configs";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
+import FlipMove from "react-flip-move";
+
 // import fireStoreDB from "./config/configs"
 
 function TimeLine() {
@@ -16,13 +21,19 @@ function TimeLine() {
 
   useEffect(() => {
     const postData = collection(db, "posts");
-    getDocs(postData).then((querySnapshot) => {
+    //postをタイムスタンプ順に並び替える
+    const q = query(postData, orderBy("timestanp", "desc"));
+    // getDocs(q).then((querySnapshot) => {
+    //   setPosts(querySnapshot.docs.map((doc) => doc.data()));
+    //   console.log(postData);
+    // });
+
+    //リアルタイムでデータを取得する
+    onSnapshot(q, (querySnapshot) => {
+      // console.log(querySnapshot);
       setPosts(querySnapshot.docs.map((doc) => doc.data()));
-      console.log(postData);
     });
   }, []);
-
-  const theme = useTheme();
 
   return (
     <>
@@ -86,15 +97,37 @@ function TimeLine() {
             >
               Activity Histories
             </Typography>
-            {posts.map((post) => (
-              <Post
-                key={Date.now()}
-                image={post.image}
-                hours={post.hours}
-                minuets={post.minuets}
-                text={post.text}
-              />
-            ))}
+            <Container>
+              <Box
+                sx={{
+                  width: "100%",
+                  maxHeight: 800,
+                  mx: "auto",
+                  justifyContent: "center",
+                  mt: 4,
+                  overflowY: "scroll",
+                  //✅後で調べる
+                  // scrollbarBaseColor: "#B586D8",
+                  // scrollbarColor: "#B586D8",
+                  display: { md: "flex" },
+                  flexWrap: "wrap",
+                }}
+              >
+                {/* Post */}
+                <FlipMove>
+                  {posts.map((post) => (
+                    <Post
+                      // key={Date.now()}
+                      key={post.text}
+                      image={post.image}
+                      hours={post.hours}
+                      minuets={post.minuets}
+                      text={post.text}
+                    />
+                  ))}
+                </FlipMove>
+              </Box>
+            </Container>
           </Box>
         </Box>
       </Container>
