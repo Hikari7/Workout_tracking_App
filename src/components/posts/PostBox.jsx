@@ -1,44 +1,46 @@
 //TweetBox.jsにあたる
-import React from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   Box,
   Button,
   Container,
   TextField,
-  useTheme,
   styled,
 } from "@mui/material";
 // import { TimePicker } from "@mui/x-date-pickers/TimePicker";
 // import dayjs from "dayjs";
 
 function PostBox({ displayName, username, avatar, verified }) {
-  const theme = useTheme();
+  const [record, setRecord] = useState("");
+  const [hours, setHours] = useState(1);
+  const [minuets, setMinuets] = useState(30);
+  const [image, setImage] = useState("");
+
+  // const onChangeRecord = (e) => {
+  //   setRecord(e.target.value);
+  // };
+
+  const sendPost = (e) => {
+    //add datas to the firebase data
+  };
 
   const CssTextField = styled(TextField)({
     "& label.Mui-focused": {
-      //   color: "primary.contrastText",
       color: "#e1bee7",
     },
-    
+
     "& .MuiInput-underline:after": {
       borderBottomColor: "#B586D8",
-      //   borderBottomColor: "primary.contrastText",
-      //   borderBottomColor: "#bada55",
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
-        // borderColor: "#EBDEF3",
         borderColor: "#B586D8",
       },
       "&:hover fieldset": {
-        // borderColor: "#B586D8",
-        // borderColor: "promary.dark",
         borderColor: "#B586D8",
       },
       "&.Mui-focused fieldset": {
-        // borderColor: "#1B225A",
-        // borderColor: "primary.conrtrastText",
         borderColor: "#B586D8",
       },
     },
@@ -87,8 +89,11 @@ function PostBox({ displayName, username, avatar, verified }) {
               ml: 2,
             }}
           />
-          <CssTextField
+          {/* ✅CSSTextFieldをやめたらonChangeイベントが発火するようになった、つら */}
+          <TextField
             // contrasttext
+            onChange={(e) => setRecord(e.target.value)}
+            value={record}
             id="Multiline Placeholder"
             label="Record your progress"
             multiline
@@ -100,7 +105,8 @@ function PostBox({ displayName, username, avatar, verified }) {
               mx: "auto",
             }}
           />
-          <CssTextField
+          <TextField
+            onChange={(e) => setImage(e.target.value)}
             id="outlined-multiline-static"
             label="Upload Image"
             rows={4}
@@ -112,6 +118,7 @@ function PostBox({ displayName, username, avatar, verified }) {
             }}
           />
           <Button
+            onClick={sendPost}
             variant="contained"
             sx={{
               display: "block",

@@ -2,11 +2,26 @@
 
 import { useTheme } from "@emotion/react";
 import { Box, Container, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Post from "./Post";
 import PostBox from "./PostBox";
+import db from "../../config/configs";
+import { collection, getDocs } from "firebase/firestore";
+// import fireStoreDB from "./config/configs"
 
 function TimeLine() {
+  //collectionという関数でデータをpostsの取ってきている=postDataの変数に入れる
+
+  const [posts, setPosts] = useState([]);
+
+  useEffect(() => {
+    const postData = collection(db, "posts");
+    getDocs(postData).then((querySnapshot) => {
+      setPosts(querySnapshot.docs.map((doc) => doc.data()));
+      console.log(postData);
+    });
+  }, []);
+
   const theme = useTheme();
 
   return (
@@ -71,12 +86,15 @@ function TimeLine() {
             >
               Activity Histories
             </Typography>
-            <Post
-              image="https://images.unsplash.com/photo-1608330270368-0ae06ae8e4eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-              hours="1"
-              minuets="30"
-              text="I trained my hip today!🍑"
-            />
+            {posts.map((post) => (
+              <Post
+                key={Date.now()}
+                image={post.image}
+                hours={post.hours}
+                minuets={post.minuets}
+                text={post.text}
+              />
+            ))}
           </Box>
         </Box>
       </Container>

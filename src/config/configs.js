@@ -1,3 +1,5 @@
+//firebaseの初期化
+
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
