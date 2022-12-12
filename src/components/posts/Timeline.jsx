@@ -3,16 +3,8 @@ import React, { useEffect, useState } from "react";
 import Post from "./Post";
 import PostBox from "./PostBox";
 import db from "../../config/configs";
-import {
-  collection,
-  getDocs,
-  onSnapshot,
-  orderBy,
-  query,
-} from "firebase/firestore";
-import FlipMove from "react-flip-move";
-
-// import fireStoreDB from "./config/configs"
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
 
 function TimeLine() {
   //collectionという関数でデータをpostsの取ってきている=postDataの変数に入れる
@@ -30,7 +22,6 @@ function TimeLine() {
 
     //リアルタイムでデータを取得する
     onSnapshot(q, (querySnapshot) => {
-      // console.log(querySnapshot);
       setPosts(querySnapshot.docs.map((doc) => doc.data()));
     });
   }, []);
@@ -109,23 +100,19 @@ function TimeLine() {
                   //✅後で調べる
                   // scrollbarBaseColor: "#B586D8",
                   // scrollbarColor: "#B586D8",
-                  display: { md: "flex" },
+                  display: "flex",
                   flexWrap: "wrap",
                 }}
               >
-                {/* Post */}
-                <FlipMove>
-                  {posts.map((post) => (
-                    <Post
-                      // key={Date.now()}
-                      key={post.text}
-                      image={post.image}
-                      hours={post.hours}
-                      minuets={post.minuets}
-                      text={post.text}
-                    />
-                  ))}
-                </FlipMove>
+                {posts.map((post) => (
+                  <Post
+                    key={uuidv4()}
+                    image={post.image}
+                    hours={post.hours}
+                    minuets={post.minuets}
+                    text={post.text}
+                  />
+                ))}
               </Box>
             </Container>
           </Box>

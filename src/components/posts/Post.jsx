@@ -1,14 +1,13 @@
 import { Typography } from "@mui/material";
-import React, { forwardRef } from "react";
-
+import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { TwitterShareButton } from "react-twitter-embed";
 
-const Post = forwardRef(({ verified, text, hours, minuets, image }, ref) => {
+function Post({ verified, text, hours, minuets, image }) {
   return (
-    <div ref={ref}>
+    <>
       <Card
         sx={{
           maxWidth: { sm: "80%", md: "40%" },
@@ -41,8 +40,8 @@ const Post = forwardRef(({ verified, text, hours, minuets, image }, ref) => {
           />
         </div>
       </Card>
-    </div>
+    </>
   );
-});
+}
 
 export default Post;
