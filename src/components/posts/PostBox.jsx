@@ -51,6 +51,22 @@ function PostBox({ displayName, username, avatar, verified }) {
     setImage("");
   };
 
+  // const theme = useTheme();
+
+  const poppserSx = {
+    "& .MuiPaper-root": {
+      backgroundColor: "#fe6b8b",
+    },
+    "& .MuiCalendarPicker-root": {
+      backgroundColor: "#EBDEF3",
+    },
+    "& .MuiPickersDay-dayWithMargin": {
+      color: "rgb(229,228,226)",
+      backgroundColor: "#9BBAE6",
+    },
+    "& .MuiTabs-root": { backgroundColor: "#9BBAE6" },
+  };
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Container>
@@ -77,10 +93,30 @@ function PostBox({ displayName, username, avatar, verified }) {
                 inputFormat="MM/DD/YYYY"
                 value={date}
                 onChange={setDate}
+                PopperProps={{ sx: poppserSx }}
                 renderInput={(params) => {
-                  return <TextField {...params} />;
+                  return (
+                    <TextField
+                      {...params}
+                      sx={{
+                        "& .MuiOutlinedInput-root": {
+                          "& fieldset": {
+                            borderColor: "primary.main",
+                          },
+                          "&:hover fieldset": {
+                            borderColor: "secondary.dark",
+                          },
+                          "&.Mui-focused fieldset": {
+                            borderColor: "primary.main",
+                          },
+                        },
+                        my: 1,
+                      }}
+                    />
+                  );
                 }}
                 showDaysOutsideCurrentMonth
+                // color="#EBDEF3"
               />
             </Box>
             <Box>
@@ -93,6 +129,7 @@ function PostBox({ displayName, username, avatar, verified }) {
                 variant="standard"
                 sx={{
                   ml: { md: 2 },
+                  my: 1,
                 }}
               />
               <TextField
@@ -103,7 +140,7 @@ function PostBox({ displayName, username, avatar, verified }) {
                 label="Minuets"
                 variant="standard"
                 sx={{
-                  // mt: 4,
+                  my: 1,
                   ml: 2,
                 }}
               />

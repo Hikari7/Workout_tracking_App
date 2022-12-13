@@ -23,3 +23,11 @@
 .margin {
   padding: 24px;
 }
+
+.myDatePicker fieldset.MuiOutlinedInput-notchedOutline {
+  border-color: #ebdef3;
+}
+
+.myDatePicker .Mui-focused fieldset.MuiOutlinedInput-notchedOutline {
+  border-color: #e1bee7;
+}

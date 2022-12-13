@@ -11,7 +11,7 @@ const theme = createTheme({
     secondary: {
       light: "#9BBAE6",
       main: "#fff",
-      // dark: "#ba000d",
+      dark: "#333",
       contrastText: "#333",
     },
     button: { main: "#1B225A" },
@@ -21,6 +21,15 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: ["Varela Round"].join(","),
+  },
+  components: {
+    MuiDatePicker: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "#e1bee7",
+        },
+      },
+    },
   },
 });
 
