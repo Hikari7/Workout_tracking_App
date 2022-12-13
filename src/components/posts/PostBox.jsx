@@ -1,4 +1,3 @@
-//TweetBox.jsにあたる
 import React, { useState } from "react";
 import {
   Avatar,
@@ -10,57 +9,50 @@ import {
 } from "@mui/material";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import db from "../../config/configs";
-// import { TimePicker } from "@mui/x-date-pickers/TimePicker";
-// import dayjs from "dayjs";
+import { DesktopDatePicker } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { doc, setDoc, Timestamp } from "firebase/firestore";
 
 function PostBox({ displayName, username, avatar, verified }) {
+  // const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState("");
+  const [hours, setHours] = useState("");
+  const [minuets, setMinuets] = useState("");
   const [record, setRecord] = useState("");
-  const [hours, setHours] = useState(1);
-  const [minuets, setMinuets] = useState(30);
   const [image, setImage] = useState("");
 
   const sendPost = (e) => {
     //add datas to the firebase data
     e.preventDefault();
+    date.toString();
 
     addDoc(collection(db, "posts"), {
       // displayName: "Hikari Kobe",
       // username: "hk_Vancouver",
       // // veritied: true,
+      date: date,
+      // date: Timestamp.fromDate(),
+      // date: Timestamp.fromMills(),
+      // date: date.getTime,
       image: image,
-      hours: 1,
-      minuets: 30,
+      hours: hours,
+      minuets: minuets,
       text: record,
       timestanp: serverTimestamp(),
     });
 
+    console.log(date);
+
+    setDate("");
     setRecord("");
+    setHours("");
+    setMinuets("");
     setImage("");
   };
 
-  const CssTextField = styled(TextField)({
-    "& label.Mui-focused": {
-      color: "#e1bee7",
-    },
-
-    "& .MuiInput-underline:after": {
-      borderBottomColor: "#B586D8",
-    },
-    "& .MuiOutlinedInput-root": {
-      "& fieldset": {
-        borderColor: "#B586D8",
-      },
-      "&:hover fieldset": {
-        borderColor: "#B586D8",
-      },
-      "&.Mui-focused fieldset": {
-        borderColor: "#B586D8",
-      },
-    },
-  });
-
   return (
-    <>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Container>
         <Box
           sx={{
@@ -78,37 +70,50 @@ function PostBox({ displayName, username, avatar, verified }) {
             }}
           />
           <p className="displayName">{displayName}</p>
-          {/* <p className="userName">{username}</p> */}
-          {/* ✅日付も入れられたらボーナスポイントだよね、、 */}
           <form onSubmit={sendPost}>
-            <CssTextField
-              required
-              id="outlined-required"
-              label="Hours"
-              defaultValue="1"
-              variant="standard"
-              sx={{
-                mt: 4,
-                ml: { xs: 2 },
-              }}
-            />
-            <CssTextField
-              required
-              id="outlined-required"
-              label="Minuets"
-              defaultValue="30"
-              variant="standard"
-              sx={{
-                mt: 4,
-                ml: 2,
-              }}
-            />
-            {/* ✅CSSTextFieldをやめたらonChangeイベントが発火するようになった、つら */}
+            <Box>
+              <DesktopDatePicker
+                label="Date"
+                inputFormat="MM/DD/YYYY"
+                value={date}
+                onChange={setDate}
+                renderInput={(params) => {
+                  return <TextField {...params} />;
+                }}
+                showDaysOutsideCurrentMonth
+              />
+            </Box>
+            <Box>
+              <TextField
+                required
+                onChange={(e) => setHours(e.target.value)}
+                value={hours}
+                id="outlined-required"
+                label="Hours"
+                variant="standard"
+                sx={{
+                  ml: { md: 2 },
+                }}
+              />
+              <TextField
+                onChange={(e) => setMinuets(e.target.value)}
+                value={minuets}
+                required
+                id="outlined-required"
+                label="Minuets"
+                variant="standard"
+                sx={{
+                  // mt: 4,
+                  ml: 2,
+                }}
+              />
+            </Box>
+
             <TextField
               onChange={(e) => setRecord(e.target.value)}
               value={record}
               id="Multiline Placeholder"
-              label="Record your progress"
+              label="Add any comments"
               multiline
               rows={4}
               sx={{
@@ -146,8 +151,30 @@ function PostBox({ displayName, username, avatar, verified }) {
           </form>
         </Box>
       </Container>
-    </>
+    </LocalizationProvider>
   );
 }
 
 export default PostBox;
+
+/* ✅CSSTextFieldをやめたらonChangeイベントが発火するようになった、つら */
+// const CssTextField = styled(TextField)({
+//   "& label.Mui-focused": {
+//     color: "#e1bee7",
+//   },
+
+//   "& .MuiInput-underline:after": {
+//     borderBottomColor: "#B586D8",
+//   },
+//   "& .MuiOutlinedInput-root": {
+//     "& fieldset": {
+//       borderColor: "#B586D8",
+//     },
+//     "&:hover fieldset": {
+//       borderColor: "#B586D8",
+//     },
+//     "&.Mui-focused fieldset": {
+//       borderColor: "#B586D8",
+//     },
+//   },
+// });

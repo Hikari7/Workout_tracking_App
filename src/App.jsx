@@ -6,10 +6,9 @@ import theme from "./Theme";
 import TimeLine from "./components/posts/Timeline";
 
 function App() {
-  // console.log(theme);
+
 
   return (
-    // <div className="App">
     <div className="App bgColor">
       <ThemeProvider theme={theme}>
         <CssBaseline />

@@ -20,8 +20,6 @@
   color: #1b225a;
 }
 
-/* .userName {
-  text-align: center;
-  font-size: 0.8rem;
-  color: #1b225a;
-} */
+.margin {
+  padding: 24px;
+}

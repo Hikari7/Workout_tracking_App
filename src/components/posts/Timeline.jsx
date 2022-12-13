@@ -67,12 +67,12 @@ function TimeLine() {
             sx={{
               background: "#fff",
               mt: 8,
-              m: { sm: 4, md: 8 },
+              mx: { sm: 4, md: 8 },
               ml: { lg: 2 },
               py: 3,
               borderRadius: 3,
-              maxHeight: "auto",
               minWidth: { lg: "60%" },
+              minHeight: 320,
             }}
           >
             <Typography
@@ -104,20 +104,42 @@ function TimeLine() {
                   flexWrap: "wrap",
                 }}
               >
-                {posts.map((post) => (
-                  <Post
-                    key={uuidv4()}
-                    image={post.image}
-                    hours={post.hours}
-                    minuets={post.minuets}
-                    text={post.text}
-                  />
-                ))}
+                {posts.length > 0 ? (
+                  posts?.map((post) => {
+                    console.log(post);
+                    return (
+                      <>
+                        <Post
+                          key={uuidv4()}
+                          date={post.date}
+                          image={post.image}
+                          hours={post.hours}
+                          minuets={post.minuets}
+                          text={post.text}
+                        />
+                      </>
+                    );
+                  })
+                ) : (
+                  <Typography
+                    component="h1"
+                    sx={{
+                      textAlign: "center",
+                      m: "10vh",
+                      letterSpacing: 2,
+                      fontSize: 18,
+                      color: "primary.contrastText",
+                    }}
+                  >
+                    Let's record today's activity!
+                  </Typography>
+                )}
               </Box>
             </Container>
           </Box>
         </Box>
       </Container>
+      <div className="margin"></div>
     </>
   );
 }
