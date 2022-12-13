@@ -8,8 +8,8 @@ import dayjs from "dayjs";
 import { Login } from "@mui/icons-material";
 
 function Post({ verified, text, hours, minuets, image, date }) {
-  //it looks like a time stamp
-  console.log(date.seconds);
+
+  // console.log(date.seconds);
 
   const ts = new Date(date.seconds);
   console.log(ts);

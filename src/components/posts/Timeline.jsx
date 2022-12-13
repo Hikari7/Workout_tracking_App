@@ -3,13 +3,39 @@ import React, { useEffect, useState } from "react";
 import Post from "./Post";
 import PostBox from "./PostBox";
 import db from "../../config/configs";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  orderBy,
+  getDocs,
+  query,
+} from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 
 function TimeLine() {
   //collectionという関数でデータをpostsの取ってきている=postDataの変数に入れる
 
   const [posts, setPosts] = useState([]);
+
+  // async function fetchData() {
+  //   try {
+  //     // const querySnapshot = await getDocs(collection(db, "posts"));
+  //     // const q = query(querySnapshot, orderBy("timestanp", "desc"));
+  //     const ordersRef = collection(db, "posts");
+  //     const q = query(ordersRef, orderBy("timestanp", "desc"));
+  //     const querySnapshot = await getDocs(q);
+
+  //     onSnapshot(querySnapshot, (Snapshot) => {
+  //       setPosts(Snapshot.docs.map((doc) => doc.data()));
+  //     });
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
+  // }
+
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   useEffect(() => {
     const postData = collection(db, "posts");
@@ -21,6 +47,7 @@ function TimeLine() {
     // });
 
     //リアルタイムでデータを取得する
+
     onSnapshot(q, (querySnapshot) => {
       setPosts(querySnapshot.docs.map((doc) => doc.data()));
     });
@@ -39,7 +66,7 @@ function TimeLine() {
               borderRadius: 3,
               py: 3,
               maxHeight: 700,
-              minWidth: { lg: "25%" },
+              minWidth: { lg: "30%" },
             }}
           >
             <Typography
@@ -97,43 +124,58 @@ function TimeLine() {
                   justifyContent: "center",
                   mt: 4,
                   overflowY: "scroll",
-                  //✅後で調べる
-                  // scrollbarBaseColor: "#B586D8",
-                  // scrollbarColor: "#B586D8",
                   display: "flex",
                   flexWrap: "wrap",
                 }}
               >
-                {posts.length > 0 ? (
-                  posts?.map((post) => {
-                    console.log(post);
-                    return (
-                      <>
-                        <Post
-                          key={uuidv4()}
-                          date={post.date}
-                          image={post.image}
-                          hours={post.hours}
-                          minuets={post.minuets}
-                          text={post.text}
-                        />
-                      </>
-                    );
-                  })
-                ) : (
-                  <Typography
-                    component="h1"
-                    sx={{
-                      textAlign: "center",
-                      m: "10vh",
-                      letterSpacing: 2,
-                      fontSize: 18,
-                      color: "primary.contrastText",
-                    }}
-                  >
-                    Let's record today's activity!
-                  </Typography>
-                )}
+                {
+                  posts.length > 0 ? (
+                    posts?.map((post) => {
+                      console.log(post);
+                      return (
+                        <>
+                          <Post
+                            key={uuidv4()}
+                            date={post.date}
+                            image={post.image}
+                            hours={post.hours}
+                            minuets={post.minuets}
+                            text={post.text}
+                          />
+                        </>
+                      );
+                    })
+                  ) : (
+                    <Typography
+                      component="h1"
+                      sx={{
+                        textAlign: "center",
+                        m: "10vh",
+                        letterSpacing: 2,
+                        fontSize: 18,
+                        color: "primary.contrastText",
+                      }}
+                    >
+                      Let's record today's activity!
+                    </Typography>
+                  )
+                  // ? (
+                  //   posts.length > 0
+                  // ) : (
+                  //   <Typography
+                  //     component="h1"
+                  //     sx={{
+                  //       textAlign: "center",
+                  //       m: "10vh",
+                  //       letterSpacing: 2,
+                  //       fontSize: 18,
+                  //       color: "primary.contrastText",
+                  //     }}
+                  //   >
+                  //     Loading...
+                  //   </Typography>
+                  // )
+                }
               </Box>
             </Container>
           </Box>

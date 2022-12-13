@@ -15,8 +15,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { doc, setDoc, Timestamp } from "firebase/firestore";
 
 function PostBox({ displayName, username, avatar, verified }) {
-  // const [date, setDate] = useState(new Date());
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date());
+  // const [date, setDate] = useState("");
   const [hours, setHours] = useState("");
   const [minuets, setMinuets] = useState("");
   const [record, setRecord] = useState("");
@@ -50,8 +50,6 @@ function PostBox({ displayName, username, avatar, verified }) {
     setMinuets("");
     setImage("");
   };
-
-  // const theme = useTheme();
 
   const poppserSx = {
     "& .MuiPaper-root": {
@@ -88,6 +86,7 @@ function PostBox({ displayName, username, avatar, verified }) {
           <p className="displayName">{displayName}</p>
           <form onSubmit={sendPost}>
             <Box>
+              {/* ✅Datepickerで選ぶとバグが出る */}
               <DesktopDatePicker
                 label="Date"
                 inputFormat="MM/DD/YYYY"
@@ -116,7 +115,6 @@ function PostBox({ displayName, username, avatar, verified }) {
                   );
                 }}
                 showDaysOutsideCurrentMonth
-                // color="#EBDEF3"
               />
             </Box>
             <Box>
