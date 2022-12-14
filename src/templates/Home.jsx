@@ -1,90 +1,191 @@
-// import React from "react";
-// import { Button, Typography, Box } from "@mui/material";
-// import LoginHeader from "./Header/LoginHeader";
-// import { Container } from "@mui/system";
-// import { signInWithPopup, TwitterAuthProvider } from "firebase/auth";
-// import { auth, provider } from "../Config/configs";
-// import { useAuthState } from "react-firebase-hooks/auth";
+//✅多分templatesフォルダに格納されることになる
 
-// ✅Googleのサインイン認証のデモ、全然Homeちゃうわ、ファイル名変えないかん
+import { Box, Container, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import Post from "../components/Posts/Post";
+import PostBox from "../components/Posts/PostBox";
+import db from "../Config/configs";
+import {
+  collection,
+  onSnapshot,
+  orderBy,
+  getDocs,
+  query,
+} from "firebase/firestore";
+import { v4 as uuidv4 } from "uuid";
 
-// function Home() {
-//   //useAuthStateで今の状態をuser変数の中に入れることができる
-//   //そのuserがNullなのか何か入っているのか判断できる
-//   const [user] = useAuthState(auth);
+function Home() {
+  //collectionという関数でデータをpostsの取ってきている=postDataの変数に入れる
 
-//   return (
-//     <div>
-//       {/* userがtrueであれば？以降が表示、falseであれば(ログインしていなければsigninbutonが表示) */}
-//       {user ? (
-//         <>
-//           <UserInfo />
-//           <SignOutButton />
-//         </>
-//       ) : (
-//         <SignInButton />
-//       )}
-//     </div>
-//   );
-// }
+  const [posts, setPosts] = useState([]);
 
-// export default Home;
+  // async function fetchData() {
+  //   try {
+  //     // const querySnapshot = await getDocs(collection(db, "posts"));
+  //     // const q = query(querySnapshot, orderBy("timestanp", "desc"));
+  //     const ordersRef = collection(db, "posts");
+  //     const q = query(ordersRef, orderBy("timestanp", "desc"));
+  //     const querySnapshot = await getDocs(q);
 
-// //Googleでサインイン
-// function SignInButton() {
-//   const signInWithGoogle = () => {
-//     signInWithPopup(auth, provider);
-//   };
+  //     onSnapshot(querySnapshot, (Snapshot) => {
+  //       setPosts(Snapshot.docs.map((doc) => doc.data()));
+  //     });
+  //   } catch (err) {
+  //     console.log(err.message);
+  //   }
+  // }
 
-//   //Twitterのサインインはドメインをちゃんと入手してからが良いみたい
-//   //   const signInWithTwitter = () => {
-//   //     const provider = new TwitterAuthProvider();
-//   //     signInWithPopup(auth, provider)
-//   //       .then((re) => {
-//   //         console.log(re);
-//   //       })
-//   //       .catch((err) => {
-//   //         console.log(err);
-//   //       });
-//   //   };
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
-//   return (
-//     <>
-//       {/* <LoginHeader /> */}
-//       <Container>
-//         <Typography>Track your day and stay healthy!</Typography>
-//         <Button onClick={signInWithGoogle}>Sign In</Button>
-//         {/* <Button onClick={signInWithTwitter}>Sign In</Button> */}
-//       </Container>
-//     </>
-//   );
-// }
+  useEffect(() => {
+    const postData = collection(db, "posts");
+    //postをタイムスタンプ順に並び替える
+    const q = query(postData, orderBy("timestanp", "desc"));
+    // getDocs(q).then((querySnapshot) => {
+    //   setPosts(querySnapshot.docs.map((doc) => doc.data()));
+    //   console.log(postData);
+    // });
 
-// //Googleでサインインアウト
+    //リアルタイムでデータを取得する
 
-// function SignOutButton() {
-//   return (
-//     <>
-//       {/* <LoginHeader /> */}
-//       <Container>
-//         <Typography>Track your day and stay healthy!</Typography>
-//         <Button onClick={() => auth.signOut()}>Sign Out</Button>
-//       </Container>
-//     </>
-//   );
-// }
+    onSnapshot(q, (querySnapshot) => {
+      setPosts(querySnapshot.docs.map((doc) => doc.data()));
+    });
+  }, []);
 
-// function UserInfo() {
-//   return (
-//     <Box>
-//       {/* <img src={auth.currentUser.photoURL} /> */}
-//       <img
-//         slot="start"
-//         referrerPolicy="no-referrer"
-//         src={auth.currentUser.photoURL}
-//       />
+  return (
+    <div className="bgColor margin">
+      <Container maxWidth="90%">
+        <Box sx={{ display: { lg: "flex" } }}>
+          <Box
+            sx={{
+              background: "#fff",
+              // mt: 8,
+              m: { sm: 4, md: 8 },
+              mr: { lg: 2 },
+              borderRadius: 3,
+              py: 3,
+              maxHeight: 700,
+              minWidth: { lg: "30%" },
+            }}
+          >
+            <Typography
+              component="h1"
+              sx={{
+                textAlign: "center",
+                mt: 8,
+                letterSpacing: 2,
+                fontSize: 18,
+                fontWeight: "bold",
+                color: "primary.contrastText",
+              }}
+            >
+              Today's activity
+            </Typography>
 
-//       <p>{auth.currentUser.displayName}</p>
-//     </Box>
-//   );
-// }
+            <PostBox
+              displayName="Hikari Kobe"
+              username="hk_Vancouver"
+              avatar="http://shincode.info/wp-content/uploads/2021/12/icon.png"
+              verified={true}
+            />
+          </Box>
+          <Box
+            sx={{
+              background: "#fff",
+              mt: 8,
+              mx: { sm: 4, md: 8 },
+              ml: { lg: 2 },
+              py: 3,
+              borderRadius: 3,
+              minWidth: { lg: "60%" },
+              minHeight: 320,
+            }}
+          >
+            <Typography
+              component="h1"
+              sx={{
+                textAlign: "center",
+                mt: 8,
+                letterSpacing: 2,
+                fontSize: 18,
+                fontWeight: "bold",
+                color: "primary.contrastText",
+              }}
+            >
+              Activity Histories
+            </Typography>
+            <Container>
+              <Box
+                sx={{
+                  width: "100%",
+                  maxHeight: 800,
+                  mx: "auto",
+                  justifyContent: "center",
+                  mt: 4,
+                  overflowY: "scroll",
+                  display: "flex",
+                  flexWrap: "wrap",
+                }}
+              >
+                {
+                  posts.length > 0 ? (
+                    posts?.map((post) => {
+                      console.log(post);
+                      return (
+                        <>
+                          <Post
+                            key={uuidv4()}
+                            date={post.date}
+                            image={post.image}
+                            hours={post.hours}
+                            minuets={post.minuets}
+                            text={post.text}
+                          />
+                        </>
+                      );
+                    })
+                  ) : (
+                    <Typography
+                      component="h1"
+                      sx={{
+                        textAlign: "center",
+                        m: "10vh",
+                        letterSpacing: 2,
+                        fontSize: 18,
+                        color: "primary.contrastText",
+                      }}
+                    >
+                      Let's record today's activity!
+                    </Typography>
+                  )
+                  // ? (
+                  //   posts.length > 0
+                  // ) : (
+                  //   <Typography
+                  //     component="h1"
+                  //     sx={{
+                  //       textAlign: "center",
+                  //       m: "10vh",
+                  //       letterSpacing: 2,
+                  //       fontSize: 18,
+                  //       color: "primary.contrastText",
+                  //     }}
+                  //   >
+                  //     Loading...
+                  //   </Typography>
+                  // )
+                }
+              </Box>
+            </Container>
+          </Box>
+        </Box>
+      </Container>
+      <div className="margin"></div>
+    </div>
+  );
+}
+
+export default Home;

@@ -4,9 +4,9 @@ import { MainTitle, SignUpTextInput, PrimaryBtn } from "../components/UI";
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  getStorage,
+//   getStorage,
 } from "firebase/auth";
-import { auth, getStorage } from "../Config/configs";
+import { auth, storage } from "../Config/configs";
 import { Form } from "react-router-dom";
 
 const SignUp = () => {
@@ -53,12 +53,6 @@ const SignUp = () => {
     },
     [setPassword]
   );
-  const inputConfirmPassword = useCallback(
-    (e) => {
-      setConfirmPassword(e.target.value);
-    },
-    [setConfirmPassword]
-  );
 
   return (
     <>
@@ -97,17 +91,6 @@ const SignUp = () => {
             type={"Password"}
             onChange={inputPassword}
           />
-
-          {/* <SignUpTextInput
-            fullWidth={true}
-            label={"Confirm Password"}
-            multiline={false}
-            required={true}
-            rows={1}
-            value={confirmPassword}
-            type={"Password"}
-            onChange={inputConfirmPassword}
-          /> */}
         </form>
         <div onClick={sendSignUp}>
           <PrimaryBtn type="submit" label={"Sign up"}></PrimaryBtn>

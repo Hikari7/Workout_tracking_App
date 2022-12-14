@@ -11,9 +11,9 @@ function Post({ verified, text, hours, minuets, image, date }) {
 
   // console.log(date.seconds);
 
-  const ts = new Date(date.seconds);
-  console.log(ts);
-  console.log(ts.toDateString());
+  // const ts = new Date(date.seconds);
+  // console.log(ts);
+  // console.log(ts.toDateString());
 
   return (
     <>
@@ -27,7 +27,7 @@ function Post({ verified, text, hours, minuets, image, date }) {
       >
         <CardMedia component="img" height="300" src={image} alt="history img" />
         <CardContent sx={{ py: 4, px: 4 }}>
-          <Typography>{ts.toDateString()}</Typography>
+          {/* <Typography>{ts.toDateString()}</Typography> */}
           {/* <Typography>{date}</Typography> */}
           <Typography variant="body1" color="primary.contrastText">
             {hours}.{minuets} hours
