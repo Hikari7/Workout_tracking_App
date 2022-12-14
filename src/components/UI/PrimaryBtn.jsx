@@ -4,7 +4,6 @@ import React from "react";
 const PrimaryBtn = (props) => {
   return (
     <Button
-      onClick={() => props.onClick()}
       variant="contained"
       sx={{
         display: "block",

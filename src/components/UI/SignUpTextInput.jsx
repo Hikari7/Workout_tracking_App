@@ -1,22 +1,7 @@
-import { styled, TextField } from "@mui/material";
+import { TextField } from "@mui/material";
 import React from "react";
 
-// const useStyles = styled({
-//   full: {
-//     marginBottom: 16,
-//   },
-//   half: {
-//     marginLeft: 8,
-//     marginRight: 8,
-//     marginBottom: 16,
-//     minWidth: 130,
-//     width: "calc(50% - 16px)",
-//   },
-// });
-
 const SignUpTextInput = (props) => {
-  // const classes = useStyles();
-  // const textStyle = props.fullWidth ? classes.full : classes.half;
   return (
     <TextField
       // className={textStyle}

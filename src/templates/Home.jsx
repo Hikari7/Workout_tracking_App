@@ -6,7 +6,7 @@
 // import { auth, provider } from "../Config/configs";
 // import { useAuthState } from "react-firebase-hooks/auth";
 
-// ✅Googleのサインイン認証のところ
+// ✅Googleのサインイン認証のデモ、全然Homeちゃうわ、ファイル名変えないかん
 
 // function Home() {
 //   //useAuthStateで今の状態をuser変数の中に入れることができる
