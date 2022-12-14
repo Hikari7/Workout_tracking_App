@@ -4,10 +4,14 @@ import { MainTitle, SignUpTextInput, PrimaryBtn } from "../components/UI";
 import {
   getAuth,
   createUserWithEmailAndPassword,
-//   getStorage,
+  //   getStorage,
 } from "firebase/auth";
-import { auth, storage } from "../Config/configs";
+import { auth, storage, db } from "../Config/configs";
+import { Storage } from "@mui/icons-material";
+
 import { Form } from "react-router-dom";
+
+import { ToastContainer, toast } from "react-toastify";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -24,6 +28,7 @@ const SignUp = () => {
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
+        username,
         email,
         password
       );
@@ -31,7 +36,10 @@ const SignUp = () => {
       const user = userCredential.user;
 
       console.log(user);
-    } catch (err) {}
+    } catch (err) {
+      //   console.log(err);
+      toast.err("Something went wrong");
+    }
   };
 
   //memo化してあげる
