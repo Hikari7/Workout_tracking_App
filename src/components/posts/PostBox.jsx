@@ -7,7 +7,7 @@ import {
   TextField,
 } from "@mui/material";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import db from "../../config/configs";
+import db from "../../Config/configs";
 import { DesktopDatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";

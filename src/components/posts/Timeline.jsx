@@ -1,8 +1,10 @@
+//✅多分templatesフォルダに格納されることになる
+
 import { Box, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Post from "./Post";
 import PostBox from "./PostBox";
-import db from "../../config/configs";
+import db from "../../Config/configs";
 import {
   collection,
   onSnapshot,

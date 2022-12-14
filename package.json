@@ -20,6 +20,7 @@
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
     "react-flip-move": "^3.0.5",
+    "react-router-dom": "^6.4.5",
     "react-twitter-embed": "^4.0.4",
     "reset-css": "^5.0.1",
     "uuid": "^9.0.0"
