@@ -3,9 +3,9 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-
+import { Link } from "react-router-dom";
+import { auth } from "../../config/configs";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
-import { Logout } from "@mui/icons-material";
 
 function Header() {
   return (
@@ -33,8 +33,12 @@ function Header() {
             Workout Tracker
           </Typography>
           <Button
-          //✅Logoutさせる
-            // onClick={Logout}
+            //✅Logoutさせる
+            onClick={() => {
+              auth.signOut();
+            }}
+            component={Link}
+            to="/login"
             color="button"
             variant="outlined"
             sx={{

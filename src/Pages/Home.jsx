@@ -1,61 +1,46 @@
-//✅多分templatesフォルダに格納されることになる
-
 import { Box, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Post from "../components/Posts/Post";
 import PostBox from "../components/Posts/PostBox";
-import db from "../Config/configs";
+import { db, user } from "../Config/configs";
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
 import { auth } from "../Config/configs";
 import { Link } from "react-router-dom";
-import { onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
-function Home(props) {
+function Home() {
   //collectionという関数でデータをpostsの取ってきている=postDataの変数に入れる
 
+  const user = auth.currentUser;
+
+  if (user !== null) {
+    // The user object has basic properties such as display name, email, etc.
+    const displayName = user.displayName;
+    const email = user.email;
+    const photoURL = user.photoURL;
+    const emailVerified = user.emailVerified;
+
+    // The user's ID, unique to the Firebase project. Do NOT use
+    // this value to authenticate with your backend server, if
+    // you have one. Use User.getToken() instead.
+    const uid = user.uid;
+    console.log(email);
+  }
+
   const [posts, setPosts] = useState([]);
-
-  // async function fetchData() {
-  //   try {
-  //     // const querySnapshot = await getDocs(collection(db, "posts"));
-  //     // const q = query(querySnapshot, orderBy("timestanp", "desc"));
-  //     const ordersRef = collection(db, "posts");
-  //     const q = query(ordersRef, orderBy("timestanp", "desc"));
-  //     const querySnapshot = await getDocs(q);
-
-  //     onSnapshot(querySnapshot, (Snapshot) => {
-  //       setPosts(Snapshot.docs.map((doc) => doc.data()));
-  //     });
-  //   } catch (err) {
-  //     console.log(err.message);
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
-  useEffect(() => {
-    onAuthStateChanged(auth, (currentUser) => {
-      console.log(currentUser);
-    });
-  }, []);
 
   useEffect(() => {
     const postData = collection(db, "posts");
     //postをタイムスタンプ順に並び替える
     const q = query(postData, orderBy("timestanp", "desc"));
-    // getDocs(q).then((querySnapshot) => {
-    //   setPosts(querySnapshot.docs.map((doc) => doc.data()));
-    //   console.log(postData);
-    // });
-
     //リアルタイムでデータを取得する
 
     onSnapshot(q, (querySnapshot) => {
       setPosts(querySnapshot.docs.map((doc) => doc.data()));
     });
   }, []);
+  console.log(user);
 
   return (
     <div className="bgColor margin">
@@ -191,3 +176,19 @@ function Home(props) {
 }
 
 export default Home;
+
+// async function fetchData() {
+//   try {
+//     // const querySnapshot = await getDocs(collection(db, "posts"));
+//     // const q = query(querySnapshot, orderBy("timestanp", "desc"));
+//     const ordersRef = collection(db, "posts");
+//     const q = query(ordersRef, orderBy("timestanp", "desc"));
+//     const querySnapshot = await getDocs(q);
+
+//     onSnapshot(querySnapshot, (Snapshot) => {
+//       setPosts(Snapshot.docs.map((doc) => doc.data()));
+//     });
+//   } catch (err) {
+//     console.log(err.message);
+//   }
+// }

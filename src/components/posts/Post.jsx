@@ -40,7 +40,7 @@ function Post({ verified, text, hours, minuets, image, date }) {
             {text}
           </Typography>
         </CardContent>
-        <div className="shareBtn">
+        {/* <div className="shareBtn">
           <TwitterShareButton
             url={"https://twitter.com/hk_Vancouver"}
             options={{
@@ -49,7 +49,7 @@ function Post({ verified, text, hours, minuets, image, date }) {
               size: "large",
             }}
           />
-        </div>
+        </div> */}
       </Card>
     </>
   );
