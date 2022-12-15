@@ -11,7 +11,7 @@ import { onAuthStateChanged, getAuth } from "firebase/auth";
 
 const PrivateRoutes = () => {
   //check who user currently login and get the userinfo
-  const [user, setUser] = useState();
+  // const [user, setUser] = useState();
 
   const { currentUser } = getAuth();
   console.log(currentUser);

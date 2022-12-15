@@ -4,7 +4,6 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { Button, Container, Typography } from "@mui/material";
 import { MainTitle, SignUpTextInput, PrimaryBtn } from "../components/UI";
 import { Link, useNavigate } from "react-router-dom";
-import { SignUp } from "../Pages/index";
 import { toast } from "react-toastify";
 //onAuthStageChanged: auth stateが変わっているか判断
 //もしページを更新してもわかる
@@ -14,7 +13,7 @@ import { toast } from "react-toastify";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
   const [loading, setLading] = useState(false);
 
   const navigate = useNavigate();
@@ -38,7 +37,7 @@ const Login = () => {
       // toast.success("Successfuly logged in");
     } catch (error) {
       // console.log(error.message);
-      setError(error.message);
+      console.log(error.message);
       // toast.error("Something went wrong");
     }
   };

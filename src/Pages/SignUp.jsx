@@ -23,7 +23,6 @@ const SignUp = () => {
     try {
       //get the promise
       const userCredential = await createUserWithEmailAndPassword(
-        //firebaseのauthを渡す
         auth,
         email,
         password
@@ -40,7 +39,6 @@ const SignUp = () => {
       // toast.error("Something went wrong");
     }
   };
-
 
   //memo化してあげる
   const inputUsername = useCallback(

@@ -1,17 +1,11 @@
 import React, { useState } from "react";
-import {
-  Avatar,
-  Box,
-  Button,
-  Container,
-  TextField,
-} from "@mui/material";
+import { Avatar, Box, Button, Container, TextField } from "@mui/material";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import db from "../../config/configs";
 import { DesktopDatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-// import { doc, setDoc, Timestamp } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 function PostBox({ displayName, username, avatar, verified }) {
   const [date, setDate] = useState(new Date());
@@ -21,11 +15,14 @@ function PostBox({ displayName, username, avatar, verified }) {
   const [record, setRecord] = useState("");
   const [image, setImage] = useState("");
 
+  const { currentUser } = getAuth();
+
   const sendPost = (e) => {
     //add datas to the firebase data
     e.preventDefault();
     date.toString();
 
+    //firestorにデータを入れる
     addDoc(collection(db, "posts"), {
       // displayName: "Hikari Kobe",
       // username: "hk_Vancouver",
@@ -39,9 +36,10 @@ function PostBox({ displayName, username, avatar, verified }) {
       minuets: minuets,
       text: record,
       timestanp: serverTimestamp(),
-    });
 
-    console.log(date);
+      //誰がこのポストを作ったか
+      userId: currentUser.uid,
+    });
 
     setDate("");
     setRecord("");

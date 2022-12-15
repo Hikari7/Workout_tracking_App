@@ -3,44 +3,60 @@ import React, { useEffect, useState } from "react";
 import Post from "../components/Posts/Post";
 import PostBox from "../components/Posts/PostBox";
 import { db, user } from "../Config/configs";
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import {
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
-import { auth } from "../Config/configs";
+import { auth, storage } from "../Config/configs";
 import { Link } from "react-router-dom";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 
 function Home() {
   //collectionという関数でデータをpostsの取ってきている=postDataの変数に入れる
 
-  const user = auth.currentUser;
-
-  if (user !== null) {
-    // The user object has basic properties such as display name, email, etc.
-    const displayName = user.displayName;
-    const email = user.email;
-    const photoURL = user.photoURL;
-    const emailVerified = user.emailVerified;
-
-    // The user's ID, unique to the Firebase project. Do NOT use
-    // this value to authenticate with your backend server, if
-    // you have one. Use User.getToken() instead.
-    const uid = user.uid;
-    console.log(email);
-  }
+  //fireBaseにストアされた情報クエリとユーザーのinnputの情報とを一致させる
+  // const user = auth.currentUser;
+  // console.log(user);
 
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
-    const postData = collection(db, "posts");
-    //postをタイムスタンプ順に並び替える
-    const q = query(postData, orderBy("timestanp", "desc"));
-    //リアルタイムでデータを取得する
+  console.log(auth.currentUser);
 
-    onSnapshot(q, (querySnapshot) => {
-      setPosts(querySnapshot.docs.map((doc) => doc.data()));
+  useEffect(() => {
+    const {
+      currentUser: { uid },
+    } = getAuth();
+
+    const postData = collection(db, "posts");
+
+    const q = query(postData, where("userId", "==", uid));
+
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      const data = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setPosts(data);
     });
+
+    return () => unsubscribe();
   }, []);
-  console.log(user);
+
+  // useEffect(() => {
+  //   //postsのレファレンスを作る
+  //   const postData = collection(db, "posts");
+  //   console.log(auth.currentUser);
+
+  //   const q = query(postData, orderBy("timestanp", "desc"));
+
+  //   onSnapshot(q, (querySnapshot) => {
+  //     setPosts(querySnapshot.docs.map((doc) => doc.data()));
+  //   });
+  // }, []);
 
   return (
     <div className="bgColor margin">
@@ -191,4 +207,18 @@ export default Home;
 //   } catch (err) {
 //     console.log(err.message);
 //   }
+// }
+
+// if (user !== null) {
+//   // The user object has basic properties such as display name, email, etc.
+//   const displayName = user.displayName;
+//   const email = user.email;
+//   const photoURL = user.photoURL;
+//   const emailVerified = user.emailVerified;
+
+//   // The user's ID, unique to the Firebase project. Do NOT use
+//   // this value to authenticate with your backend server, if
+//   // you have one. Use User.getToken() instead.
+//   const uid = user.uid;
+//   console.log(email);
 // }
