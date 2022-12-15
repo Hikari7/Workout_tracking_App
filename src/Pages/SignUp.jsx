@@ -1,44 +1,36 @@
-import { Box, Button, Container, Typography, TextField } from "@mui/material";
+import { Container } from "@mui/material";
 import React, { useState, useCallback } from "react";
 import { MainTitle, SignUpTextInput, PrimaryBtn } from "../components/UI";
-import {
-  getAuth,
-  createUserWithEmailAndPassword,
-  //   getStorage,
-} from "firebase/auth";
-import { auth, storage, db } from "../Config/configs";
-import { Storage } from "@mui/icons-material";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../Config/configs";
 
-import { Form } from "react-router-dom";
-
-import { ToastContainer, toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [loading, setLoading] = useState(false);
 
-  //とりあえずEmailの入力情報はFirebaseに送ることができたぽいです
   const sendSignUp = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
     try {
+      //get the promise
       const userCredential = await createUserWithEmailAndPassword(
+        //firebaseのauthを渡す
         auth,
         username,
         email,
         password
       );
 
+      //userをlogin pageに渡す？props???それかそのままHomeに？
       const user = userCredential.user;
 
       console.log(user);
     } catch (err) {
-      //   console.log(err);
-      toast.err("Something went wrong");
+      console.log(err.message);
+      // toast.err("Something went wrong");
     }
   };
 

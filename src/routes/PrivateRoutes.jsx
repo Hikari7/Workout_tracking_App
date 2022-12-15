@@ -1,16 +1,26 @@
-import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Navigate, Outlet, Route } from "react-router-dom";
+import { auth } from "../config/configs";
+
+//check the user is on stateged
+import { onAuthStateChanged } from "firebase/auth";
 
 const PrivateRoutes = () => {
   //tokenをfalseに変えようぜ
-  let auth = { token: true };
+  // let auth = { token: true };
 
-  return (
-    // <Route {...rest}>{!auth.token ? <Redirect to="/login" /> : children}</Route>
+  //check who user currently login
+  const [user, setUser] = useState(null);
 
-    //もしtokenがtrueだったら、Outletに移動して、そうじゃなかったらlogin pageに
-    auth.token ? <Outlet /> : <Navigate to="/login" />
-  );
+  //userだったらその中のpageに
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  }, []);
+console.log("aaaa");
+  return user === null ? <Navigate to="/login" /> : <Outlet />;
+  // return user !== null ? <Navigate to="/login" /> : <Outlet />;
 };
 
 export default PrivateRoutes;

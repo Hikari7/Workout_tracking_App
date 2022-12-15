@@ -67,7 +67,7 @@ function Home() {
               mr: { lg: 2 },
               borderRadius: 3,
               py: 3,
-              maxHeight: 700,
+              height: 800,
               minWidth: { lg: "30%" },
             }}
           >
@@ -88,7 +88,7 @@ function Home() {
             <PostBox
               displayName="Hikari Kobe"
               username="hk_Vancouver"
-              avatar="http://shincode.info/wp-content/uploads/2021/12/icon.png"
+              // avatar="http://shincode.info/wp-content/uploads/2021/12/icon.png"
               verified={true}
             />
           </Box>

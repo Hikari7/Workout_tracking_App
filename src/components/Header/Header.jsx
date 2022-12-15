@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import { Logout } from "@mui/icons-material";
 
 function Header() {
   return (
@@ -32,6 +33,8 @@ function Header() {
             Workout Tracker
           </Typography>
           <Button
+          //✅Logoutさせる
+            // onClick={Logout}
             color="button"
             variant="outlined"
             sx={{
