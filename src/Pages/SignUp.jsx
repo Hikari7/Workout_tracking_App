@@ -1,9 +1,10 @@
 import { Container } from "@mui/material";
 import React, { useState, useCallback } from "react";
-import { MainTitle, SignUpTextInput, PrimaryBtn } from "../components/UI";
+import { MainTitle, SignUpTextInput } from "../components/UI";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Config/configs";
-
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 // import { toast } from "react-toastify";
 
 const SignUp = () => {
@@ -19,12 +20,11 @@ const SignUp = () => {
       const userCredential = await createUserWithEmailAndPassword(
         //firebaseのauthを渡す
         auth,
-        username,
+        // username,
         email,
         password
       );
 
-      //userをlogin pageに渡す？props???それかそのままHomeに？
       const user = userCredential.user;
 
       console.log(user);
@@ -92,9 +92,16 @@ const SignUp = () => {
             onChange={inputPassword}
           />
         </form>
-        <div onClick={sendSignUp}>
-          <PrimaryBtn type="submit" label={"Sign up"}></PrimaryBtn>
-        </div>
+
+        <Button
+          label={"Sign up"}
+          variant="outlined"
+          component={Link}
+          to="/login"
+          onClick={sendSignUp}
+        >
+          Sign up
+        </Button>
       </Container>
     </>
   );

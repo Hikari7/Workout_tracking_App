@@ -5,16 +5,13 @@ import React, { useEffect, useState } from "react";
 import Post from "../components/Posts/Post";
 import PostBox from "../components/Posts/PostBox";
 import db from "../Config/configs";
-import {
-  collection,
-  onSnapshot,
-  orderBy,
-  getDocs,
-  query,
-} from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
+import { auth } from "../Config/configs";
+import { Link } from "react-router-dom";
+import { onAuthStateChanged } from "firebase/auth";
 
-function Home() {
+function Home(props) {
   //collectionという関数でデータをpostsの取ってきている=postDataの変数に入れる
 
   const [posts, setPosts] = useState([]);
@@ -38,6 +35,11 @@ function Home() {
   // useEffect(() => {
   //   fetchData();
   // }, []);
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      console.log(currentUser);
+    });
+  }, []);
 
   useEffect(() => {
     const postData = collection(db, "posts");
