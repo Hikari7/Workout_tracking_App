@@ -3,12 +3,10 @@ import React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-import { TwitterShareButton } from "react-twitter-embed";
 import dayjs from "dayjs";
 import { Login } from "@mui/icons-material";
 
 function Post({ verified, text, hours, minuets, image, date }) {
-
   // console.log(date.seconds);
 
   // const ts = new Date(date.seconds);
@@ -40,16 +38,6 @@ function Post({ verified, text, hours, minuets, image, date }) {
             {text}
           </Typography>
         </CardContent>
-        {/* <div className="shareBtn">
-          <TwitterShareButton
-            url={"https://twitter.com/hk_Vancouver"}
-            options={{
-              text: "#WorkoutTracker",
-              via: "hk_Vancouver",
-              size: "large",
-            }}
-          />
-        </div> */}
       </Card>
     </>
   );

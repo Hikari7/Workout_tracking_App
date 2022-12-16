@@ -13,7 +13,9 @@ function PostBox({ displayName, username, avatar, verified }) {
   const [hours, setHours] = useState("");
   const [minuets, setMinuets] = useState("");
   const [record, setRecord] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(
+    "https://64.media.tumblr.com/7ff0de87bbb81573a03dbc13dd25af3d/tumblr_pz9sxpGfi31sq411to1_1280.jpg"
+  );
 
   const { currentUser } = getAuth();
 
@@ -39,6 +41,7 @@ function PostBox({ displayName, username, avatar, verified }) {
 
       //誰がこのポストを作ったか
       userId: currentUser.uid,
+      displayName: currentUser.displayName,
     });
 
     setDate("");

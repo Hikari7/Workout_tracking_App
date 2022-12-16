@@ -5,8 +5,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Config/configs";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
-import { toast } from "react-toastify";
-// import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const [username, setUsername] = useState("");
@@ -33,10 +33,10 @@ const SignUp = () => {
       console.log(user);
       setLading(false);
       navigate("/login");
-      // toast.success("Acount created");
+      toast.success("Acount created");
     } catch (error) {
       console.log(error.message);
-      // toast.error("Something went wrong");
+      toast.error("Something went wrong");
     }
   };
 
@@ -68,6 +68,7 @@ const SignUp = () => {
         ) : (
           <>
             <Typography>Sign Up</Typography>
+            <ToastContainer />
             <form onSubmit={sendSignUp}>
               <SignUpTextInput
                 fullWidth={true}

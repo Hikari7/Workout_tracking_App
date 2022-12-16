@@ -4,7 +4,9 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { Button, Container, Typography } from "@mui/material";
 import { MainTitle, SignUpTextInput, PrimaryBtn } from "../components/UI";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 //onAuthStageChanged: auth stateが変わっているか判断
 //もしページを更新してもわかる
 
@@ -13,7 +15,6 @@ import { toast } from "react-toastify";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [error, setError] = useState("");
   const [loading, setLading] = useState(false);
 
   const navigate = useNavigate();
@@ -32,13 +33,11 @@ const Login = () => {
       const user = userCredential.user;
       navigate("/home");
       console.log(user);
-
       setLading(false);
-      // toast.success("Successfuly logged in");
+      toast.success("Successfuly logged in");
     } catch (error) {
       // console.log(error.message);
-      console.log(error.message);
-      // toast.error("Something went wrong");
+      toast.error("Something went wrong");
     }
   };
 
@@ -64,6 +63,7 @@ const Login = () => {
           <>
             <Typography>Log In to your account</Typography>
 
+            <ToastContainer />
             <SignUpTextInput
               fullWidth={true}
               label={"Email"}
@@ -84,7 +84,6 @@ const Login = () => {
               type={"password"}
               onChange={inputPassword}
             />
-
             <div onClick={sendLogin}>
               <Button
                 label={"Login"}
@@ -95,10 +94,8 @@ const Login = () => {
                 Login
               </Button>
             </div>
-
             <Container>
               <Typography>Don't have an account?</Typography>
-
               <Button variant="outlined" component={Link} to="/signup">
                 Sign up
               </Button>

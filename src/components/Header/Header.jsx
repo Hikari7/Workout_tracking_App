@@ -33,7 +33,6 @@ function Header() {
             Workout Tracker
           </Typography>
           <Button
-            //✅Logoutさせる
             onClick={() => {
               auth.signOut();
             }}

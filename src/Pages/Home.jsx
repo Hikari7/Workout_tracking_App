@@ -2,7 +2,7 @@ import { Box, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Post from "../components/Posts/Post";
 import PostBox from "../components/Posts/PostBox";
-import { db, user } from "../Config/configs";
+import { db } from "../Config/configs";
 import {
   collection,
   onSnapshot,
@@ -11,8 +11,7 @@ import {
   where,
 } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
-import { auth, storage } from "../Config/configs";
-import { Link } from "react-router-dom";
+import { auth } from "../Config/configs";
 import { getAuth } from "firebase/auth";
 
 function Home() {
@@ -33,6 +32,7 @@ function Home() {
 
     const postData = collection(db, "posts");
 
+    //Firebaseのuseridとauthで出てきたuid
     const q = query(postData, where("userId", "==", uid));
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -46,19 +46,13 @@ function Home() {
     return () => unsubscribe();
   }, []);
 
-  // useEffect(() => {
-  //   //postsのレファレンスを作る
-  //   const postData = collection(db, "posts");
-  //   console.log(auth.currentUser);
+  const {
+    currentUser: { uid , displayName},
+  } = getAuth();
 
-  //   const q = query(postData, orderBy("timestanp", "desc"));
-
-  //   onSnapshot(q, (querySnapshot) => {
-  //     setPosts(querySnapshot.docs.map((doc) => doc.data()));
-  //   });
-  // }, []);
 
   return (
+    
     <div className="bgColor margin">
       <Container maxWidth="90%">
         <Box sx={{ display: { lg: "flex" } }}>
@@ -89,9 +83,8 @@ function Home() {
             </Typography>
 
             <PostBox
-              displayName="Hikari Kobe"
+              displayName={displayName}
               username="hk_Vancouver"
-              // avatar="http://shincode.info/wp-content/uploads/2021/12/icon.png"
               verified={true}
             />
           </Box>
