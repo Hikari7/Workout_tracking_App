@@ -8,7 +8,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { getAuth } from "firebase/auth";
 
 function PostBox({ displayName, username, avatar, verified }) {
-  const [date, setDate] = useState(new Date());
+  // const [date, setDate] = useState(new Date());
   // const [date, setDate] = useState("");
   const [hours, setHours] = useState("");
   const [minuets, setMinuets] = useState("");
@@ -26,13 +26,7 @@ function PostBox({ displayName, username, avatar, verified }) {
 
     //firestorにデータを入れる
     addDoc(collection(db, "posts"), {
-      // displayName: "Hikari Kobe",
-      // username: "hk_Vancouver",
-      // // veritied: true,
       date: date,
-      // date: Timestamp.fromDate(),
-      // date: Timestamp.fromMills(),
-      // date: date.getTime,
       image: image,
       hours: hours,
       minuets: minuets,
@@ -86,7 +80,6 @@ function PostBox({ displayName, username, avatar, verified }) {
           <p className="displayName">{displayName}</p>
           <form onSubmit={sendPost}>
             <Box>
-              {/* ✅Datepickerで選ぶとバグが出る */}
               <DesktopDatePicker
                 label="Date"
                 inputFormat="MM/DD/YYYY"
@@ -192,24 +185,3 @@ function PostBox({ displayName, username, avatar, verified }) {
 
 export default PostBox;
 
-/* ✅CSSTextFieldをやめたらonChangeイベントが発火するようになった、つら */
-// const CssTextField = styled(TextField)({
-//   "& label.Mui-focused": {
-//     color: "#e1bee7",
-//   },
-
-//   "& .MuiInput-underline:after": {
-//     borderBottomColor: "#B586D8",
-//   },
-//   "& .MuiOutlinedInput-root": {
-//     "& fieldset": {
-//       borderColor: "#B586D8",
-//     },
-//     "&:hover fieldset": {
-//       borderColor: "#B586D8",
-//     },
-//     "&.Mui-focused fieldset": {
-//       borderColor: "#B586D8",
-//     },
-//   },
-// });

@@ -1,18 +1,8 @@
-import React, { useEffect, useState, createContext, useContext } from "react";
+import React from "react";
 import { Navigate, Outlet, Route } from "react-router-dom";
-import { auth } from "../config/configs";
-import { onAuthStateChanged, getAuth } from "firebase/auth";
-
-// const AuthContext = createContext();
-
-// export function useAuthContext() {
-//   return useContext(AuthContext);
-// }
+import { getAuth } from "firebase/auth";
 
 const PrivateRoutes = () => {
-  //check who user currently login and get the userinfo
-  // const [user, setUser] = useState();
-
   const { currentUser } = getAuth();
   console.log(currentUser);
 
@@ -23,14 +13,3 @@ const PrivateRoutes = () => {
 };
 
 export default PrivateRoutes;
-
-// <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
-//userだったらその中のpageに
-// useEffect(() => {
-//   onAuthStateChanged(auth, (currentUser) => {
-//     setUser(currentUser);
-//   });
-//   // return () => {
-//   //   unsubscribed();
-//   // };
-// }, []);

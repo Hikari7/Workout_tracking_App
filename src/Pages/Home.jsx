@@ -23,7 +23,7 @@ function Home() {
 
   const [posts, setPosts] = useState([]);
 
-  console.log(auth.currentUser);
+  // console.log(auth.currentUser);
 
   useEffect(() => {
     const {
@@ -33,7 +33,11 @@ function Home() {
     const postData = collection(db, "posts");
 
     //Firebaseのuseridとauthで出てきたuid
-    const q = query(postData, where("userId", "==", uid));
+    const q = query(
+      postData,
+      // orderBy("timestanp", "desc"),
+      where("userId", "==", uid)
+    );
 
     const unsubscribe = onSnapshot(q, (querySnapshot) => {
       const data = querySnapshot.docs.map((doc) => ({
@@ -47,12 +51,11 @@ function Home() {
   }, []);
 
   const {
-    currentUser: { uid , displayName},
+    currentUser: { uid, displayName },
   } = getAuth();
 
-
+  // const q = query(ordersRef, orderBy("timestanp", "desc"));
   return (
-    
     <div className="bgColor margin">
       <Container maxWidth="90%">
         <Box sx={{ display: { lg: "flex" } }}>

@@ -32,11 +32,10 @@ const Login = () => {
 
       const user = userCredential.user;
       navigate("/home");
-      console.log(user);
+      // console.log(user);
       setLading(false);
       toast.success("Successfuly logged in");
     } catch (error) {
-      // console.log(error.message);
       toast.error("Something went wrong");
     }
   };

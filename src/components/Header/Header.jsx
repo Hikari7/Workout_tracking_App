@@ -6,8 +6,13 @@ import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import { auth } from "../../config/configs";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import { getAuth } from "firebase/auth";
+import { Box } from "@mui/material";
 
 function Header() {
+  const { currentUser } = getAuth();
+
+  console.log("Header", currentUser);
   return (
     <>
       <AppBar
@@ -32,24 +37,30 @@ function Header() {
           >
             Workout Tracker
           </Typography>
-          <Button
-            onClick={() => {
-              auth.signOut();
-            }}
-            component={Link}
-            to="/login"
-            color="button"
-            variant="outlined"
-            sx={{
-              marginLeft: "auto",
-              "&:hover": {
-                backgroundColor: "primary.light",
-              },
-              textTransform: "none",
-            }}
-          >
-            Logout
-          </Button>
+          <Box>
+            {/* {currentUser ? ( */}
+              <Button
+                onClick={() => {
+                  auth.signOut();
+                }}
+                component={Link}
+                to="/login"
+                color="button"
+                variant="outlined"
+                sx={{
+                  marginLeft: "auto",
+                  "&:hover": {
+                    backgroundColor: "primary.light",
+                  },
+                  textTransform: "none",
+                }}
+              >
+                Logout
+              </Button>
+            {/* ) : (
+              ""
+            )} */}
+          </Box>
         </Toolbar>
       </AppBar>
     </>
