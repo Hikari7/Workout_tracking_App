@@ -38,7 +38,7 @@ function PostBox({ displayName, username, avatar, verified }) {
       displayName: currentUser.displayName,
     });
 
-    setDate("");
+    // setDate("");
     setRecord("");
     setHours("");
     setMinuets("");
