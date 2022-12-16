@@ -1,11 +1,10 @@
-import { Container, Typography } from "@mui/material";
+import { Button, Container, Typography, Box } from "@mui/material";
 import React, { useState, useCallback } from "react";
-import { MainTitle, SignUpTextInput } from "../components/UI";
+import { SignUpTextInput } from "../components/UI";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../Config/configs";
 import { Link, useNavigate } from "react-router-dom";
-import { Button } from "@mui/material";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
@@ -67,60 +66,94 @@ const SignUp = () => {
           <Typography>Lading...</Typography>
         ) : (
           <>
-            <Typography>Sign Up</Typography>
-            <ToastContainer />
-            <form onSubmit={sendSignUp}>
-              <SignUpTextInput
-                fullWidth={true}
-                label={"Username"}
-                multiline={false}
-                required={true}
-                rows={1}
-                value={username}
-                type={"text"}
-                onChange={inputUsername}
-              />
-
-              <SignUpTextInput
-                fullWidth={true}
-                label={"Email"}
-                multiline={false}
-                required={true}
-                rows={1}
-                value={email}
-                type={"text"}
-                onChange={inputEmail}
-              />
-              <SignUpTextInput
-                fullWidth={true}
-                label={"Password"}
-                multiline={false}
-                required={true}
-                rows={1}
-                value={password}
-                type={"Password"}
-                onChange={inputPassword}
-              />
-            </form>
-            <Button
-              variant="outlined"
-              component={Link}
-              to="/login"
-              onClick={sendSignUp}
+            <Typography
+              component="h1"
+              sx={{
+                textAlign: "center",
+                mt: 6,
+                letterSpacing: 2,
+                fontSize: 36,
+                fontWeight: "bold",
+                color: "primary.contrastText",
+              }}
             >
-              Create your account
-            </Button>
-            <hr></hr>
+              Sign Up
+            </Typography>
+            <Box sx={{ margin: 4 }}>
+              <form onSubmit={sendSignUp}>
+                <SignUpTextInput
+                  fullWidth={true}
+                  label={"Username"}
+                  multiline={false}
+                  required={true}
+                  rows={1}
+                  value={username}
+                  type={"text"}
+                  onChange={inputUsername}
+                />
 
-            <Typography>Already have an account?</Typography>
-            <Button
-              label={"Login"}
-              variant="outlined"
-              component={Link}
-              to="/home"
+                <SignUpTextInput
+                  fullWidth={true}
+                  label={"Email"}
+                  multiline={false}
+                  required={true}
+                  rows={1}
+                  value={email}
+                  type={"text"}
+                  onChange={inputEmail}
+                />
+                <SignUpTextInput
+                  fullWidth={true}
+                  label={"Password"}
+                  multiline={false}
+                  required={true}
+                  rows={1}
+                  value={password}
+                  type={"Password"}
+                  onChange={inputPassword}
+                />
+              </form>
+            </Box>
+            <Box textAlign="center">
+              <Button
+                component={Link}
+                to="/home"
+                sx={{
+                  mt: 2,
+                  mb: 4,
+                  textTransform: "none",
+                }}
+                variant="contained"
+                onClick={sendSignUp}
+              >
+                Create Your Account
+              </Button>
+            </Box>
+            <hr className="hr"></hr>
+            <Typography
+              sx={{
+                textAlign: "center",
+                mt: 6,
+                letterSpacing: 2,
+                fontSize: 14,
+              }}
             >
-              Login
-            </Button>
+              Already have an account?
+            </Typography>
+            <Box textAlign="center">
+              <Button
+                label={"Login"}
+                variant="contained"
+                component={Link}
+                to="/home"
+                sx={{
+                  mt: 2,
+                  textTransform: "none",
+                }}
+              >
+                Login
+              </Button>
+            </Box>
           </>
         )}
       </Container>

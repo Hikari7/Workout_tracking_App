@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from "react";
 import { auth } from "../config/configs";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { Button, Container, Typography } from "@mui/material";
-import { MainTitle, SignUpTextInput, PrimaryBtn } from "../components/UI";
+import { Button, Container, Typography, Box } from "@mui/material";
+import { SignUpTextInput } from "../components/UI";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -23,7 +23,6 @@ const Login = () => {
     e.preventDefault();
     try {
       console.log("clicked");
-      //get the promise
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
@@ -32,9 +31,8 @@ const Login = () => {
 
       const user = userCredential.user;
       navigate("/home");
-      // console.log(user);
       setLading(false);
-      toast.success("Successfuly logged in");
+      toast.success("Successfuly signed out");
     } catch (error) {
       toast.error("Something went wrong");
     }
@@ -55,52 +53,105 @@ const Login = () => {
 
   return (
     <>
-      <Container maxWidth="50%">
-        {loading ? (
-          <Typography>Lading...</Typography>
-        ) : (
-          <>
-            <Typography>Log In to your account</Typography>
-
-            <ToastContainer />
-            <SignUpTextInput
-              fullWidth={true}
-              label={"Email"}
-              multiline={false}
-              required={true}
-              rows={1}
-              value={email}
-              type={"text"}
-              onChange={inputEmail}
-            />
-            <SignUpTextInput
-              fullWidth={true}
-              label={"Password"}
-              multiline={false}
-              required={true}
-              rows={1}
-              value={password}
-              type={"password"}
-              onChange={inputPassword}
-            />
-            <div onClick={sendLogin}>
-              <Button
-                label={"Login"}
-                variant="outlined"
-                component={Link}
-                to="/home"
-              >
-                Login
-              </Button>
-            </div>
-            <Container>
-              <Typography>Don't have an account?</Typography>
-              <Button variant="outlined" component={Link} to="/signup">
-                Sign up
-              </Button>
-            </Container>
-          </>
-        )}
+      <Container>
+        <Box
+          sx={{
+            height: "auto",
+            mx: "auto",
+            mt: 4,
+          }}
+        >
+          {loading ? (
+            <Typography>Lading...</Typography>
+          ) : (
+            <>
+              <Box>
+                <Typography
+                  component="h1"
+                  sx={{
+                    textAlign: "center",
+                    mt: 6,
+                    letterSpacing: 2,
+                    fontSize: 36,
+                    fontWeight: "bold",
+                    color: "primary.contrastText",
+                  }}
+                >
+                  Log in to your account
+                </Typography>
+              </Box>
+              <ToastContainer />
+              <Box sx={{ margin: 6 }}>
+                <SignUpTextInput
+                  fullWidth={true}
+                  label={"Email"}
+                  multiline={false}
+                  required={true}
+                  rows={1}
+                  value={email}
+                  type={"text"}
+                  onChange={inputEmail}
+                />
+                <SignUpTextInput
+                  fullWidth={true}
+                  label={"Password"}
+                  multiline={false}
+                  required={true}
+                  rows={1}
+                  value={password}
+                  type={"password"}
+                  onChange={inputPassword}
+                />
+              </Box>
+              <Box onClick={sendLogin} textAlign="center">
+                <Button
+                  variant="contained"
+                  component={Link}
+                  to="/home"
+                  sx={{
+                    display: "block",
+                    justifyContent: "center",
+                    my: 4,
+                    mx: "auto",
+                    width: 120,
+                    alignItems: "center",
+                    textTransform: "none",
+                  }}
+                >
+                  Login
+                </Button>
+              </Box>
+              <hr className="hr"></hr>
+              <Box>
+                <Typography
+                  component="h1"
+                  sx={{
+                    textAlign: "center",
+                    mt: 6,
+                    letterSpacing: 2,
+                    fontSize: 14,
+                    color: "primary.contrastText",
+                  }}
+                >
+                  Don't have an account?
+                </Typography>
+                <Box textAlign="center">
+                  <Button
+                    variant="contained"
+                    component={Link}
+                    to="/signup"
+                    sx={{
+                      mt: 2,
+                      textTransform: "none",
+                    }}
+                  >
+                    Sign up
+                  </Button>
+                </Box>
+              </Box>
+            </>
+          )}
+        </Box>
       </Container>
     </>
   );

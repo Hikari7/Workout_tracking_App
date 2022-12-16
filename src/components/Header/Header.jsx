@@ -39,27 +39,24 @@ function Header() {
           </Typography>
           <Box>
             {/* {currentUser ? ( */}
-              <Button
-                onClick={() => {
-                  auth.signOut();
-                }}
-                component={Link}
-                to="/login"
-                color="button"
-                variant="outlined"
-                sx={{
-                  marginLeft: "auto",
-                  "&:hover": {
-                    backgroundColor: "primary.light",
-                  },
-                  textTransform: "none",
-                }}
-              >
-                Logout
-              </Button>
-            {/* ) : (
-              ""
-            )} */}
+            <Button
+              onClick={() => {
+                auth.signOut();
+              }}
+              component={Link}
+              to="/login"
+              color="button"
+              variant="outlined"
+              sx={{
+                marginLeft: "auto",
+                "&:hover": {
+                  backgroundColor: "primary.light",
+                },
+                textTransform: "none",
+              }}
+            >
+              Logout
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>

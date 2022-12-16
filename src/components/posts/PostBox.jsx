@@ -22,11 +22,11 @@ function PostBox({ displayName, username, avatar, verified }) {
   const sendPost = (e) => {
     //add datas to the firebase data
     e.preventDefault();
-    date.toString();
+    // date.toString();
 
     //firestorにデータを入れる
     addDoc(collection(db, "posts"), {
-      date: date,
+      // date: date,
       image: image,
       hours: hours,
       minuets: minuets,
@@ -83,8 +83,8 @@ function PostBox({ displayName, username, avatar, verified }) {
               <DesktopDatePicker
                 label="Date"
                 inputFormat="MM/DD/YYYY"
-                value={date}
-                onChange={setDate}
+                // value={date}
+                // onChange={setDate}
                 PopperProps={{ sx: poppserSx }}
                 renderInput={(params) => {
                   return (
