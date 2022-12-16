@@ -61,7 +61,7 @@ function PostBox({ displayName, username, avatar, verified }) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Container sx={{ position: "absolute" }}>
+      <Container>
         <Box
           sx={{
             minWidth: "80%",

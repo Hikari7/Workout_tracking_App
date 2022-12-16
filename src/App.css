@@ -65,7 +65,7 @@
 .postDefault {
   width: 350px;
   height: 350px;
-  max-height: 200px;
+  /* max-height: 200px; */
 }
 
 .topimg {
