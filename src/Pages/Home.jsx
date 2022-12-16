@@ -163,7 +163,7 @@ function Home() {
                     </Typography>
                     <img
                       src={postDefautl}
-                      alt="React Logo"
+                      alt="post default img"
                       className="postDefault"
                     />
                   </Box>
@@ -179,4 +179,3 @@ function Home() {
 }
 
 export default Home;
-
