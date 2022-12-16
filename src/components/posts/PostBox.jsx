@@ -61,13 +61,15 @@ function PostBox({ displayName, username, avatar, verified }) {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <Container>
+      <Container sx={{ position: "absolute" }}>
         <Box
           sx={{
             minWidth: "80%",
             height: "auto",
             mx: "auto",
             mt: 4,
+            position: "relative",
+            top: "50%",
           }}
         >
           <Avatar
@@ -145,7 +147,7 @@ function PostBox({ displayName, username, avatar, verified }) {
               multiline
               rows={4}
               sx={{
-                mt: 2,
+                mt: 4,
                 justifyContent: "spaceBetween",
                 width: "100%",
                 mx: "auto",
@@ -161,7 +163,7 @@ function PostBox({ displayName, username, avatar, verified }) {
                 justifyContent: "spaceBetween",
                 width: "100%",
                 mx: "auto",
-                mt: 2,
+                mt: 4,
               }}
             />
             <Button

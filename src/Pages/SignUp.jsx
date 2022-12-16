@@ -20,7 +20,6 @@ const SignUp = () => {
     setLading(true);
 
     try {
-      //get the promise
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -39,7 +38,6 @@ const SignUp = () => {
     }
   };
 
-  //memo化してあげる
   const inputUsername = useCallback(
     (e) => {
       setUsername(e.target.value);

@@ -180,32 +180,3 @@ function Home() {
 
 export default Home;
 
-// async function fetchData() {
-//   try {
-//     // const querySnapshot = await getDocs(collection(db, "posts"));
-//     // const q = query(querySnapshot, orderBy("timestanp", "desc"));
-//     const ordersRef = collection(db, "posts");
-//     const q = query(ordersRef, orderBy("timestanp", "desc"));
-//     const querySnapshot = await getDocs(q);
-
-//     onSnapshot(querySnapshot, (Snapshot) => {
-//       setPosts(Snapshot.docs.map((doc) => doc.data()));
-//     });
-//   } catch (err) {
-//     console.log(err.message);
-//   }
-// }
-
-// if (user !== null) {
-//   // The user object has basic properties such as display name, email, etc.
-//   const displayName = user.displayName;
-//   const email = user.email;
-//   const photoURL = user.photoURL;
-//   const emailVerified = user.emailVerified;
-
-//   // The user's ID, unique to the Firebase project. Do NOT use
-//   // this value to authenticate with your backend server, if
-//   // you have one. Use User.getToken() instead.
-//   const uid = user.uid;
-//   console.log(email);
-// }
