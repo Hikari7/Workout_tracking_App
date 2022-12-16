@@ -13,6 +13,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import { auth } from "../Config/configs";
 import { getAuth } from "firebase/auth";
+import postDefautl from "../assets/postDefault.svg";
 
 function Home() {
   //collectionという関数でデータをpostsの取ってきている=postDataの変数に入れる
@@ -67,7 +68,7 @@ function Home() {
               mr: { lg: 2 },
               borderRadius: 3,
               py: 3,
-              height: 800,
+              height: "auto",
               minWidth: { lg: "30%" },
             }}
           >
@@ -101,6 +102,7 @@ function Home() {
               borderRadius: 3,
               minWidth: { lg: "60%" },
               minHeight: 320,
+              position: "relative",
             }}
           >
             <Typography
@@ -129,54 +131,43 @@ function Home() {
                   flexWrap: "wrap",
                 }}
               >
-                {
-                  posts.length > 0 ? (
-                    posts?.map((post) => {
-                      console.log(post);
-                      return (
-                        <>
-                          <Post
-                            key={uuidv4()}
-                            date={post.date}
-                            image={post.image}
-                            hours={post.hours}
-                            minuets={post.minuets}
-                            text={post.text}
-                          />
-                        </>
-                      );
-                    })
-                  ) : (
+                {posts.length > 0 ? (
+                  posts?.map((post) => {
+                    console.log(post);
+                    return (
+                      <>
+                        <Post
+                          key={uuidv4()}
+                          date={post.date}
+                          image={post.image}
+                          hours={post.hours}
+                          minuets={post.minuets}
+                          text={post.text}
+                        />
+                      </>
+                    );
+                  })
+                ) : (
+                  <Box sx={{ position: { md: "absolute", top: "30%" } }}>
                     <Typography
                       component="h1"
                       sx={{
                         textAlign: "center",
-                        m: "10vh",
                         letterSpacing: 2,
                         fontSize: 18,
                         color: "primary.contrastText",
+                        alignItems: "center",
                       }}
                     >
                       Let's record today's activity!
                     </Typography>
-                  )
-                  // ? (
-                  //   posts.length > 0
-                  // ) : (
-                  //   <Typography
-                  //     component="h1"
-                  //     sx={{
-                  //       textAlign: "center",
-                  //       m: "10vh",
-                  //       letterSpacing: 2,
-                  //       fontSize: 18,
-                  //       color: "primary.contrastText",
-                  //     }}
-                  //   >
-                  //     Loading...
-                  //   </Typography>
-                  // )
-                }
+                    <img
+                      src={postDefautl}
+                      alt="React Logo"
+                      className="postDefault"
+                    />
+                  </Box>
+                )}
               </Box>
             </Container>
           </Box>

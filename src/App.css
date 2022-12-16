@@ -46,6 +46,8 @@
   bottom: 0;
   width: 100%;
   text-align: center;
+  background-color: #9bbae6;
+  padding: 8px;
 }
 
 .center_p {
@@ -53,9 +55,14 @@
   alignitem: center;
   margin: 0 auto;
   width: 100%;
-  fontsize: 6px;
+  font-size: 8px;
 }
 
 #root {
   height: 100vh;
+}
+
+.postDefault {
+  width: 350px;
+  height: 350px;
 }
