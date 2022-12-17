@@ -70,7 +70,7 @@ const Login = () => {
                   component="h1"
                   sx={{
                     textAlign: "center",
-                    mt: 6,
+                    mt: 10,
                     letterSpacing: 2,
                     fontSize: 36,
                     fontWeight: "bold",

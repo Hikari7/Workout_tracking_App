@@ -13,9 +13,7 @@ function PostBox({ displayName, username, avatar, verified }) {
   const [hours, setHours] = useState("");
   const [minuets, setMinuets] = useState("");
   const [record, setRecord] = useState("");
-  const [image, setImage] = useState(
-    "https://64.media.tumblr.com/7ff0de87bbb81573a03dbc13dd25af3d/tumblr_pz9sxpGfi31sq411to1_1280.jpg"
-  );
+  const [image, setImage] = useState("https://images.unsplash.com/photo-1608330270368-0ae06ae8e4eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80");
 
   const { currentUser } = getAuth();
 

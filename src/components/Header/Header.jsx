@@ -30,15 +30,22 @@ function Header() {
             aria-label="menu"
             sx={{ mr: 2 }}
           />
+
           <Typography
             variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, fontWeight: "bold" }}
+            sx={{
+              flexGrow: 1,
+              fontWeight: "bold",
+              textDecoration: "none",
+              color: "primary.contrastText",
+            }}
+            component={Link}
+            to="/"
           >
             Workout Tracker
           </Typography>
+
           <Box>
-            {/* {currentUser ? ( */}
             <Button
               onClick={() => {
                 auth.signOut();

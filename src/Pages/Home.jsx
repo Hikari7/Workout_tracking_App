@@ -13,7 +13,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import { auth } from "../Config/configs";
 import { getAuth } from "firebase/auth";
-import postDefautl from "../assets/postDefault.svg";
+import postDefautl from "../assets/App/postDefault.svg";
 
 function Home() {
   //collectionという関数でデータをpostsの取ってきている=postDataの変数に入れる
@@ -63,7 +63,6 @@ function Home() {
           <Box
             sx={{
               background: "#fff",
-              // mt: 8,
               m: { sm: 4, md: 8 },
               mr: { lg: 2 },
               borderRadius: 3,
