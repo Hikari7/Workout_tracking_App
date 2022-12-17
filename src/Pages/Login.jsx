@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import { auth } from "../config/configs";
+import { auth } from "../Config/configs";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { Button, Container, Typography, Box } from "@mui/material";
 import { SignUpTextInput } from "../components/UI";
