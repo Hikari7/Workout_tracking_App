@@ -1,7 +1,7 @@
 import { Box, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import Post from "../components/Posts/Post";
-import PostBox from "../components/Posts/PostBox";
+import Post from "../components/posts/Post";
+import PostBox from "../components/posts/PostBox";
 import { db } from "../config/configs";
 import {
   collection,
