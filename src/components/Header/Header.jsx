@@ -4,7 +4,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-import { auth } from "../../Config/configs";
+import { auth } from "../../config/configs";
 import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
 import { getAuth } from "firebase/auth";
 import { Box } from "@mui/material";

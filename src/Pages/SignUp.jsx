@@ -2,7 +2,7 @@ import { Button, Container, Typography, Box } from "@mui/material";
 import React, { useState, useCallback } from "react";
 import { SignUpTextInput } from "../components/UI";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../Config/configs";
+import { auth } from "../config/configs";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

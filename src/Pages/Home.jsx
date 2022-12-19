@@ -2,7 +2,7 @@ import { Box, Container, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import Post from "../components/Posts/Post";
 import PostBox from "../components/Posts/PostBox";
-import { db } from "../Config/configs";
+import { db } from "../config/configs";
 import {
   collection,
   onSnapshot,
@@ -11,7 +11,7 @@ import {
   where,
 } from "firebase/firestore";
 import { v4 as uuidv4 } from "uuid";
-import { auth } from "../Config/configs";
+import { auth } from "../config/configs";
 import { getAuth } from "firebase/auth";
 import postDefautl from "../assets/App/postDefault.svg";
 
