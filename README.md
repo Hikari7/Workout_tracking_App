@@ -22,18 +22,17 @@ A workout log application provides the store the user information and their post
 
 - Impremented authentication system and stored user info and their post datas with Firebase.
 
-
 ## Challenging Part
 
-- The part that manages routing rules in React router depends on the user authentication status checked by Firebase. I was able to know how to make a Multi-Page Application and deepen my understanding of React Router, especially how `Private Routes` works.
-
+- How managing routing rules in React router depending on user authentication status checked by Firebase was hard to figure out.
+I tried to understand the Firebase documentation to solve this, and also organized the folder structure in a practical way.
+I was able to learn the process of making a Multi-Page Application deepen my understanding of React Router, especially how `Private Routes` works through this project.
 
 ## Setup
 
 - Download or clone the repository
 - Run `npm install`
 - Run `npm run dev` to start running the app
-
 
 ## Status
 
