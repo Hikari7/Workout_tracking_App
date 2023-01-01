@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Avatar, Box, Button, Container, TextField } from "@mui/material";
 import { collection, addDoc, serverTimestamp } from "firebase/firestore";
-import db from "../../Config/configs";
+import { db, storage } from "../../Config/configs";
 import { DesktopDatePicker } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { getAuth } from "firebase/auth";
+// import { ref } from "firebase/storage";
+// import { uploadBytes } from "firebase/storage";
 
 function PostBox({ displayName, username, avatar, verified }) {
   // const [date, setDate] = useState(new Date());
@@ -13,7 +15,9 @@ function PostBox({ displayName, username, avatar, verified }) {
   const [hours, setHours] = useState("");
   const [minuets, setMinuets] = useState("");
   const [record, setRecord] = useState("");
-  const [image, setImage] = useState("https://images.unsplash.com/photo-1608330270368-0ae06ae8e4eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80");
+  const [image, setImage] = useState(
+    "https://images.unsplash.com/photo-1608330270368-0ae06ae8e4eb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+  );
 
   const { currentUser } = getAuth();
 
@@ -56,6 +60,15 @@ function PostBox({ displayName, username, avatar, verified }) {
     },
     "& .MuiTabs-root": { backgroundColor: "#9BBAE6" },
   };
+
+  // const onFileUploadToFirebase = (e) => {
+  //   // console.log(e.target.files[0].name);
+  //   const file = e.target.files[0];
+  //   const storageRef = ref(storage, "image/" + file.name);
+  //   uploadBytes(storageRef, file).then((snapshot) => {
+  //     console.log("Uploaded a blob or file!");
+  //   });
+  // };
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -164,6 +177,25 @@ function PostBox({ displayName, username, avatar, verified }) {
                 mt: 4,
               }}
             />
+
+            {/* <input
+              type="file"
+              accept=".png, .jpeg, .jpg"
+              style={{ display: "none" }}
+              id="contained-button-file"
+              onChange={onFileUploadToFirebase}
+              src={image}
+            />
+            <label htmlFor="contained-button-file">
+              <Button
+                variant="contained"
+                color="primary"
+                component="span"
+                sx={{ my: 4, textTransform: "none" }}
+              >
+                Upload Image
+              </Button>
+            </label> */}
             <Button
               type="submit"
               variant="contained"

@@ -86,9 +86,9 @@ function Home() {
             </Typography>
 
             <PostBox
-              displayName={displayName}
-              username="hk_Vancouver"
-              verified={true}
+              // displayName={displayName}
+              // username="hk_Vancouver"
+              // verified={true}
             />
           </Box>
           <Box
